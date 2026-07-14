@@ -1312,6 +1312,28 @@ button, input, select, textarea {
     background-color: var(--primary-color);
 }
 
+.footer-contact-list {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-contact .contact-call-icon {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--primary-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .footer-contact {
     display: flex;
     flex-direction: column;
@@ -1326,6 +1348,7 @@ button, input, select, textarea {
     line-height: 1.5;
 }
 
+/* legacy per-contact icons removed from markup; keep .contact-icon rules harmless */
 .contact-icon {
     flex-shrink: 0;
     width: 20px;

@@ -11,7 +11,8 @@ const COMPETITION_DATA = {
     ],
     'TK': [
         'Estafet Pijak Kardus',
-        'Tiup Bola Pingpong'
+        'Tiup Bola Pingpong',
+        'Makan Kerupuk'
     ],
     'SD Kelas 1–3': [
         'Memasukkan Sedotan ke Dalam Botol',
@@ -25,7 +26,8 @@ const COMPETITION_DATA = {
     ],
     'SMP Kelas 1': [
         'Kait Topi',
-        'Tiup Balon dalam Gelas'
+        'Tiup Balon dalam Gelas',
+        'Makan Kerupuk dengan Pancingan'
     ]
 };
 
