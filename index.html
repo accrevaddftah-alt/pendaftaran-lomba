@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pendaftaran Online Lomba Kemerdekaan 17 Agustus 2026. Mari rayakan HUT RI ke-81 dengan mengikuti berbagai perlombaan seru dan raih hadiah jutaan rupiah!">
+    <title>Pendaftaran Lomba 17 Agustus 2026</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Material Symbols (used for single call icon in footer) -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="loader-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="preloader-logo-wrap">
+                <img src="image/logo-hut-ri.jpg" alt="Logo HUT RI" class="preloader-logo" onerror="this.style.display='none'">
+            </div>
+            <h2>17 AGUSTUS 1945</h2>
+            <p>Memuat Kemeriahan Kemerdekaan...</p>
+        </div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="navbar-container" id="navbar">
+        <div class="navbar-wrapper wrapper">
+            <a href="#" class="logo">
+                <span class="flag-stripe red"></span>
+                <span class="flag-stripe white"></span>
+                <span class="logo-text">MERDEKA<span>81</span></span>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#lomba" class="nav-link">Lomba</a>
+                <a href="#jadwal" class="nav-link">Jadwal</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </nav>
+
+            <div class="navbar-actions">
+                <!-- Dark Mode Toggle -->
+                <button id="dark-mode-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+
+                <!-- Hamburger Menu for Mobile -->
+                <button class="hamburger-menu" id="hamburger-btn" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero-section">
+            <div class="hero-bg-decorations">
+                <div class="decor-circle circle-1"></div>
+                <div class="decor-circle circle-2"></div>
+                <div class="decor-ribbon"></div>
+            </div>
+            
+            <div class="wrapper hero-container">
+                <div class="hero-content fade-up-init">
+                    <div class="independence-badge">
+                        <span class="badge-flag">🇮🇩</span> HUT Republik Indonesia ke-81
+                    </div>
+                    <h1 class="hero-title">Pendaftaran Lomba <br><span class="highlight-text">17 Agustus 2026</span></h1>
+                    <p class="hero-subtitle">Mari rayakan Hari Kemerdekaan Indonesia dengan mengikuti berbagai perlombaan seru dan raih kesempatan memenangkan hadiah menarik!</p>
+                    
+                    <div class="hero-actions">
+                        <a href="#daftar" class="btn btn-primary">Daftar Sekarang</a>
+                        <a href="#jadwal" class="btn btn-secondary">Lihat Jadwal</a>
+                    </div>
+                </div>
+
+                <!-- COUNTDOWN COMPONENT -->
+                <div class="hero-countdown-box fade-up-init">
+                    <h3 class="countdown-title">Countdown Menuju 17 Agustus 2026</h3>
+                    <div class="countdown-timer" id="countdown">
+                        <div class="time-block">
+                            <span class="time-num" id="days">00</span>
+                            <span class="time-label">Hari</span>
+                        </div>
+                        <div class="time-divider">:</div>
+                        <div class="time-block">
+                            <span class="time-num" id="hours">00</span>
+                            <span class="time-label">Jam</span>
+                        </div>
+                        <div class="time-divider">:</div>
+                        <div class="time-block">
+                            <span class="time-num" id="minutes">00</span>
+                            <span class="time-label">Menit</span>
+                        </div>
+                        <div class="time-divider">:</div>
+                        <div class="time-block">
+                            <span class="time-num" id="seconds">00</span>
+                            <span class="time-label">Detik</span>
+                        </div>
+                    </div>
+                    <div class="countdown-footer">
+                        <p>Bersiaplah untuk merayakan kemerdekaan bersama!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DAFTAR LOMBA SECTION -->
+        <section id="lomba" class="lomba-section section-padding">
+            <div class="wrapper">
+                <div class="section-header fade-up-init">
+                    <span class="section-tag">Perlombaan</span>
+                    <h2 class="section-title">Pilihan Lomba Seru</h2>
+                    <p class="section-subtitle">Tersedia berbagai pilihan lomba menarik untuk anak-anak. Pilih lomba favoritmu sekarang!!!</p>
+                </div>
+
+                <div class="lomba-categories">
+
+                    <!-- PAUD / Di Bawah TK -->
+                    <div class="lomba-category fade-up-init">
+                        <div class="category-header">
+                            <span class="category-badge">Kategori</span>
+                            <h3 class="category-title">PAUD / Di Bawah TK</h3>
+                        </div>
+                        <div class="lomba-grid">
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="8" r="4" fill="currentColor"/>
+                                        <path d="M4 20C4 16 7.5 14 12 14C16.5 14 20 16 20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M16 6L18 4M18 4L20 6M18 4V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Memindahkan Bola dengan Sendok</h3>
+                                <p class="lomba-desc">Memindahkan bola dari satu tempat ke tempat lain menggunakan sendok tanpa menjatuhkannya.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('PAUD / Di Bawah TK', 'Memindahkan Bola dengan Sendok')">Pilih Lomba</a>
+                            </div>
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="8" cy="14" r="3" fill="currentColor"/>
+                                        <circle cx="14" cy="10" r="2.5" fill="currentColor"/>
+                                        <circle cx="17" cy="16" r="2" fill="currentColor"/>
+                                        <path d="M5 8L8 11M11 7L14 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Mengumpulkan Karet</h3>
+                                <p class="lomba-desc">Mengumpulkan karet sebanyak-banyaknya menggunakan sumpit dalam waktu yang ditentukan.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('PAUD / Di Bawah TK', 'Mengumpulkan Karet')">Pilih Lomba</a>
+                            </div>
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" fill="currentColor"/>
+                                        <rect x="9" y="14" width="6" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Memindahkan Air ke Dalam Botol</h3>
+                                <p class="lomba-desc">Memindahkan air ke dalam botol dengan menggunakan gelas sampai terisi penuh.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('PAUD / Di Bawah TK', 'Memindahkan Air ke Dalam Botol')">Pilih Lomba</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TK -->
+                    <div class="lomba-category fade-up-init">
+                        <div class="category-header">
+                            <span class="category-badge">Kategori</span>
+                            <h3 class="category-title">TK</h3>
+                        </div>
+                        <div class="lomba-grid">
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="14" width="6" height="4" rx="1" fill="currentColor"/>
+                                        <rect x="9" y="10" width="6" height="4" rx="1" fill="currentColor" opacity="0.7"/>
+                                        <rect x="15" y="6" width="6" height="4" rx="1" fill="currentColor" opacity="0.4"/>
+                                        <path d="M6 14V10M12 10V6M18 6V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Berjalan Menggunakan Kardus</h3>
+                                <p class="lomba-desc">Berjalan sambil menginjak kardus secara bergantian hingga garis finish.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('TK', 'Estafet Pijak Kardus')">Pilih Lomba</a>
+                            </div>
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="10" r="5" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M8 14C8 14 10 18 12 18C14 18 16 14 16 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M4 8C6 6 8 5 12 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Tiup Bola Pingpong</h3>
+                                <p class="lomba-desc">Meniup bola pingpong melewati gelas yang berisi air hingga mencapai garis finish.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('TK', 'Tiup Bola Pingpong')">Pilih Lomba</a>
+                            </div>
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" fill="currentColor"/>
+                                        <rect x="9" y="14" width="6" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Makan Kerupuk</h3>
+                                <p class="lomba-desc">Memakan kerupuk dengan cepat tanpa menggunakan tangan sampai waktu habis.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('TK', 'Makan Kerupuk')">Pilih Lomba</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SD Kelas 1–3 -->
+                    <div class="lomba-category fade-up-init">
+                        <div class="category-header">
+                            <span class="category-badge">Kategori</span>
+                            <h3 class="category-title">SD Kelas 1–3</h3>
+                        </div>
+                        <div class="lomba-grid">
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="9" y="6" width="6" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                                        <line x1="12" y1="2" x2="12" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        <line x1="8" y1="4" x2="16" y2="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Memasukkan Sedotan ke Dalam Botol</h3>
+                                <p class="lomba-desc">Memasukkan sedotan dengan mulut ke dalam botol secepat dan setepat mungkin.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('SD Kelas 1–3', 'Memasukkan Sedotan ke Dalam Botol')">Pilih Lomba</a>
+                            </div>
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 14C4 14 8 10 12 10C16 10 20 14 20 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        <rect x="10" y="4" width="4" height="8" rx="2" fill="currentColor"/>
+                                        <path d="M8 18L10 20M16 18L14 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Meniup Gelas Terbang</h3>
+                                <p class="lomba-desc">Meniup gelas plastik hingga sampai garis finish.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('SD Kelas 1–3', 'Meniup Botol Terbang')">Pilih Lomba</a>
+                            </div>
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/>
+                                        <path d="M12 5C10.5 5 9.5 6 9.5 7.5C9.5 9 11 9 11 10C11 11.5 8 11.5 8 13.5C8 15 10 16 12 16C14 16 16 15 16 13.5C16 11.5 13 11.5 13 10C13 9 14.5 9 14.5 7.5C14.5 6 13.5 5 12 5Z" fill="currentColor"/>
+                                        <line x1="12" y1="1" x2="12" y2="5" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Makan Kerupuk</h3>
+                                <p class="lomba-desc">Memakan kerupuk dengan cepat tanpa menggunakan tangan sampai waktu habis.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('SD Kelas 1–3', 'Makan Kerupuk')">Pilih Lomba</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SD Kelas 4–6 -->
+                    <div class="lomba-category fade-up-init">
+                        <div class="category-header">
+                            <span class="category-badge">Kategori</span>
+                            <h3 class="category-title">SD Kelas 4–6</h3>
+                        </div>
+                        <div class="lomba-grid">
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="8" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                        <circle cx="16" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                        <line x1="11" y1="12" x2="13" y2="12" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M12 4V8M12 16V20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Memindahkan Karet Pakai Sedotan</h3>
+                                <p class="lomba-desc">Memindahkan karet dari satu tempat ke tempat lain menggunakan sedotan.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('SD Kelas 4–6', 'Estafet Karet Pakai Sedotan')">Pilih Lomba</a>
+                            </div>
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 18C6 14 9 10 12 10C15 10 18 14 18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        <circle cx="12" cy="7" r="3" fill="currentColor"/>
+                                        <path d="M4 6L6 4M20 6L18 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Cukurukuk</h3>
+                                <p class="lomba-desc">Menggantungkan besek plastik dengan menggunakan kepala.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('SD Kelas 4–6', 'Cukurukuk')">Pilih Lomba</a>
+                            </div>
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/>
+                                        <path d="M12 5C10.5 5 9.5 6 9.5 7.5C9.5 9 11 9 11 10C11 11.5 8 11.5 8 13.5C8 15 10 16 12 16C14 16 16 15 16 13.5C16 11.5 13 11.5 13 10C13 9 14.5 9 14.5 7.5C14.5 6 13.5 5 12 5Z" fill="currentColor"/>
+                                        <line x1="12" y1="1" x2="12" y2="5" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Makan Kerupuk</h3>
+                                <p class="lomba-desc">Memakan kerupuk dengan cepat tanpa menggunakan tangan sampai waktu habis.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('SD Kelas 4–6', 'Makan Kerupuk')">Pilih Lomba</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SMP Kelas 1 -->
+                    <div class="lomba-category fade-up-init">
+                        <div class="category-header">
+                            <span class="category-badge">Kategori</span>
+                            <h3 class="category-title">SMP Kelas 1</h3>
+                        </div>
+                        <div class="lomba-grid">
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 14C4 14 8 10 14 10C18 10 20 12 20 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        <ellipse cx="12" cy="8" rx="8" ry="3" fill="currentColor"/>
+                                        <path d="M12 11V16M10 16H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Kait Topi</h3>
+                                <p class="lomba-desc">Mengaitkan topi ke target dengan cepat dan tepat sasaran.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('SMP Kelas 1', 'Kait Topi')">Pilih Lomba</a>
+                            </div>
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="8" y="12" width="8" height="10" rx="1" stroke="currentColor" stroke-width="2"/>
+                                        <circle cx="12" cy="8" r="5" fill="currentColor"/>
+                                        <path d="M10 8H14" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Tiup Balon dalam Gelas</h3>
+                                <p class="lomba-desc">Mengisi balon di dalam gelas menggunakan tiupan secepat mungkin dan memindahkan ke tempat lain.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('SMP Kelas 1', 'Tiup Balon dalam Gelas')">Pilih Lomba</a>
+                            </div>
+                            <div class="lomba-card">
+                                <div class="lomba-icon-container">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" fill="currentColor"/>
+                                        <rect x="9" y="14" width="6" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                                    </svg>
+                                </div>
+                                <h3 class="lomba-name">Makan Kerupuk dengan Pancingan</h3>
+                                <p class="lomba-desc">Memakan kerupuk yang digantung dengan pancingan yang dipegang oleh lawan sampai waktu habis.</p>
+                                <a href="#daftar" class="btn-card-action" onclick="selectCompetition('SMP Kelas 1', 'Makan Kerupuk dengan Pancingan')">Pilih Lomba</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IBU-IBU -->
+                    <div class="lomba-category fade-up-init">
+                        <div class="category-header">
+                            <span class="category-badge">Kategori</span>
+                            <h3 class="category-title">IBU-IBU</h3>
+                        </div>
+                        <div class="category-placeholder">
+                            <div class="placeholder-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="8" y1="9" x2="16" y2="9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <line x1="8" y1="13" x2="14" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <line x1="8" y1="17" x2="12" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <p>Daftar lomba akan segera diumumkan.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- JADWAL LOMBA SECTION -->
+        <section id="jadwal" class="jadwal-section section-padding alt-bg">
+            <div class="wrapper">
+                <div class="section-header fade-up-init">
+                    <span class="section-tag">Agenda</span>
+                    <h2 class="section-title">Jadwal Pelaksanaan Lomba</h2>
+                    <p class="section-subtitle">Catat tanggal dan tempat pelaksanaannya agar kamu tidak melewatkan keseruan perlombaan!</p>
+                </div>
+
+                <div class="table-container fade-up-init">
+                    <table class="jadwal-table">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Jam</th>
+                                <th>Nama Lomba</th>
+                                <th>Lokasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Tanggal"><span class="badge-date">15 Agustus 2026</span></td>
+                                <td data-label="Jam">08:00 - 10:00</td>
+                                <td data-label="Nama Lomba" class="table-lomba-name">Makan Kerupuk</td>
+                                <td data-label="Lokasi">Lapangan Utama RT 01</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Tanggal"><span class="badge-date">15 Agustus 2026</span></td>
+                                <td data-label="Jam">10:30 - 12:00</td>
+                                <td data-label="Nama Lomba" class="table-lomba-name">Lari Kelereng</td>
+                                <td data-label="Lokasi">Lapangan Utama RT 01</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Tanggal"><span class="badge-date">15 Agustus 2026</span></td>
+                                <td data-label="Jam">14:00 - 16:00</td>
+                                <td data-label="Nama Lomba" class="table-lomba-name">Memasukkan Paku ke Botol</td>
+                                <td data-label="Lokasi">Balai Warga RW 05</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Tanggal"><span class="badge-date">16 Agustus 2026</span></td>
+                                <td data-label="Jam">08:00 - 11:30</td>
+                                <td data-label="Nama Lomba" class="table-lomba-name">Tarik Tambang</td>
+                                <td data-label="Lokasi">Lapangan Utama RT 01</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Tanggal"><span class="badge-date">16 Agustus 2026</span></td>
+                                <td data-label="Jam">13:30 - 15:30</td>
+                                <td data-label="Nama Lomba" class="table-lomba-name">Estafet Air</td>
+                                <td data-label="Lokasi">Halaman Depan Masjid Al-Ikhlas</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Tanggal"><span class="badge-date">16 Agustus 2026</span></td>
+                                <td data-label="Jam">16:00 - 17:30</td>
+                                <td data-label="Nama Lomba" class="table-lomba-name">Joget Balon</td>
+                                <td data-label="Lokasi">Balai Warga RW 05</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Tanggal"><span class="badge-date">17 Agustus 2026</span></td>
+                                <td data-label="Jam">09:00 - 11:30</td>
+                                <td data-label="Nama Lomba" class="table-lomba-name">Balap Karung</td>
+                                <td data-label="Lokasi">Lapangan Utama RT 01</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Tanggal"><span class="badge-date">17 Agustus 2026</span></td>
+                                <td data-label="Jam">13:00 - 17:00</td>
+                                <td data-label="Nama Lomba" class="table-lomba-name">Panjat Pinang (Puncak Acara)</td>
+                                <td data-label="Lokasi">Lapangan Utama RT 01</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORM PENDAFTARAN SECTION -->
+        <section id="daftar" class="daftar-section section-padding alt-bg">
+            <div class="wrapper registration-wrapper">
+                <div class="registration-info fade-up-init">
+                    <span class="section-tag-light">Formulir Online</span>
+                    <h2 class="info-title">Gabung Sekarang & Raih Kemenangan!</h2>
+                    <p class="info-desc">Isi formulir pendaftaran di samping dengan data diri lengkap dan pilih lomba yang ingin kamu ikuti. Pendaftaran gratis tanpa dipungut biaya apapun.</p>
+                    
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <span class="rule-icon">✓</span>
+                            <p>Wajib mengisi semua data formulir dengan valid.</p>
+                        </div>
+                        <div class="rule-item">
+                            <span class="rule-icon">✓</span>
+                            <p>Satu peserta boleh mengikuti semua lomba yang berbeda sesuai dengan kategorinya masing-masing.</p>
+                        </div>
+                        <div class="rule-item">
+                            <span class="rule-icon">✓</span>
+                            <p>Untuk cara bermain dan peraturan bermain, akan di berikan arahan oleh panitia saat lomba berlangsung.</p>
+                        </div>
+                        <div class="rule-item">
+                            <span class="rule-icon">✓</span>
+                            <p>Pendaftaran ditutup pada tanggal 14 Agustus 2026 pukul 23:59 WIB.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-container fade-up-init">
+                    <form id="registration-form" class="registration-form" novalidate>
+                        <h3 class="form-title">Formulir Pendaftaran</h3>
+                        
+                        <div class="form-group">
+                            <label for="fullname">Nama Lengkap <span class="required">*</span></label>
+                            <input type="text" id="fullname" name="fullname" placeholder="Masukkan nama lengkap" required>
+                            <span class="error-msg" id="fullname-error">Nama lengkap wajib diisi</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Kategori Lomba <span class="required">*</span></label>
+                            <select id="category" name="category" required>
+                                <option value="" disabled selected>Pilih kategori lomba</option>
+                                <option value="PAUD / Di Bawah TK">PAUD / Di Bawah TK</option>
+                                <option value="TK">TK</option>
+                                <option value="SD Kelas 1–3">SD Kelas 1–3</option>
+                                <option value="SD Kelas 4–6">SD Kelas 4–6</option>
+                                <option value="SMP Kelas 1">SMP Kelas 1</option>
+                            </select>
+                            <span class="error-msg" id="category-error">Kategori lomba wajib dipilih</span>
+                        </div>
+
+                        <div class="form-group" id="lomba-form-group">
+                            <label>Lomba <span class="required">*</span></label>
+                            <p class="form-hint" id="lomba-hint">Pilih kategori lomba terlebih dahulu untuk melihat pilihan lomba.</p>
+                            <div class="lomba-checkbox-group" id="lomba-options"></div>
+                            <span class="error-msg" id="lomba-error">Minimal satu lomba wajib dipilih</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Alamat <span class="required">*</span></label>
+                            <textarea id="address" name="address" rows="3" placeholder="Contoh: GANG DAMAI 1 J1/54" required></textarea>
+                            <span class="error-msg" id="address-error">Alamat wajib diisi</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Catatan (Opsional)</label>
+                            <textarea id="notes" name="notes" rows="2" placeholder="Silakan masukan pertanyaan"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-submit">
+                            <span class="btn-text">Kirim Pendaftaran</span>
+                            <span class="btn-loader"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION (ACCORDION) -->
+        <section id="faq" class="faq-section section-padding">
+            <div class="wrapper">
+                <div class="section-header fade-up-init">
+                    <span class="section-tag">Pertanyaan</span>
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p class="section-subtitle">Temukan jawaban atas pertanyaan umum mengenai pendaftaran dan pelaksanaan Lomba 17 Agustus.</p>
+                </div>
+
+                <div class="faq-container fade-up-init">
+                    <div class="faq-item">
+                        <button class="faq-trigger" aria-expanded="false">
+                            <span class="faq-question">Apakah pendaftaran lomba ini dipungut biaya?</span>
+                            <span class="faq-icon-toggle"></span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Tidak, seluruh perlombaan dalam rangka menyambut HUT RI ke-81 ini sepenuhnya <strong>Gratis</strong> untuk semua warga. Tidak ada biaya pendaftaran atau administrasi apapun.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger" aria-expanded="false">
+                            <span class="faq-question">Apakah ada batasan usia untuk peserta?</span>
+                            <span class="faq-icon-toggle"></span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Batasan usia minimal adalah 5 tahun. Beberapa lomba seperti Lari Kelereng & Makan Kerupuk terbuka untuk anak-anak, sedangkan lomba Tarik Tambang & Panjat Pinang dikhususkan untuk kategori dewasa (15 tahun ke atas).</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger" aria-expanded="false">
+                            <span class="faq-question">Bolehkah saya mendaftar lebih dari satu lomba?</span>
+                            <span class="faq-icon-toggle"></span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Boleh. Setiap peserta diperbolehkan mendaftar lebih dari 1 lomba <strong>dengan perlombaan yang berbeda sesuai kategorinya masing-masing</strong>, dengan catatan jadwal pertandingan kedua lomba tersebut tidak bentrok di jam pelaksanaan.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-trigger" aria-expanded="false">
+                            <span class="faq-question">Kapan dan di mana pengumuman pemenang diumumkan?</span>
+                            <span class="faq-icon-toggle"></span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Pengumuman pemenang dan pembagian hadiah akan diselenggarakan langsung pada Malam Puncak Kemerdekaan tanggal 17 Agustus 2026 mulai pukul 19:30 WIB bertempat di Lapangan RT 41.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="wrapper footer-container">
+            <div class="footer-info">
+                <a href="#" class="footer-logo">
+                    <span class="flag-stripe red"></span>
+                    <span class="flag-stripe white"></span>
+                    <span class="logo-text">MERDEKA<span>81</span></span>
+                </a>
+                <p class="footer-desc">Mari satukan semangat kemerdekaan dengan berpartisipasi aktif dalam kegiatan perlombaan. Bersama kita merayakan kebersamaan dan sportivitas.</p>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Hubungi Panitia</h4>
+                <div class="footer-contact-list">
+                    <span class="material-symbols-outlined contact-call-icon">call</span>
+                    <div class="contact-details">
+                        <p class="contact-item">
+                            <span><a href="https://wa.me/62895622082567" target="_blank" rel="noopener">+62 895-6220-82567</a> (Dika)</span>
+                        </p>
+                        <p class="contact-item">
+                            <span><a href="https://wa.me/62895621672090" target="_blank" rel="noopener">+62 895-6216-72090</a> (Dimas)</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Menu Navigasi</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#lomba">Daftar Lomba</a></li>
+                    <li><a href="#jadwal">Jadwal Lomba</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="wrapper footer-bottom-wrapper">
+                <p class="copyright">&copy; 2026 Panitia Lomba Kemerdekaan HUT RI ke-81. All Rights Reserved.</p>
+                <p class="developer">Made with ❤️ for Indonesia</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="back-to-top" class="back-to-top-btn" aria-label="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <!-- SUCCESS REGISTRATION MODAL -->
+    <div id="success-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-success-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h3 class="modal-title">Pendaftaran Berhasil!</h3>
+            <p class="modal-desc">Selamat <strong id="registered-name"></strong>, data pendaftaran Anda untuk kategori <strong id="registered-category"></strong> dengan lomba <strong id="registered-competition"></strong> telah kami terima. Panitia akan segera memproses pendaftaran Anda.</p>
+            <button class="btn btn-primary btn-close-modal" id="close-modal-btn">Tutup</button>
+        </div>
+    </div>
+
+    <!-- CONFETTI CANVAS -->
+    <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
+
+    <!-- JavaScript code -->
+    <script src="script.js"></script>
+</body>
+</html>
