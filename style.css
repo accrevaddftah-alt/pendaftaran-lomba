@@ -390,47 +390,58 @@ button, input, select, textarea {
 .hero-bg-emoji {
     position: absolute;
     font-size: 2.6rem;
-    opacity: 0.4;
+    opacity: 0.45; /* sedikit lebih jelas */
     display: inline-flex;
     align-items: center;
     justify-content: center;
     pointer-events: none;
     will-change: transform, opacity;
     line-height: 1;
+    z-index: 1; /* tetap di bawah .hero-container (z-index:2) */
 }
 
-.hero-bg-emoji.emoji-flag {
-    top: 10%;
+/* 🔥 kiri-atas */
+.hero-bg-emoji.emoji-fire {
+    top: 8%;
     left: 4%;
-    animation: float-vertical-1 8s ease-in-out infinite;
+    animation: float-vertical-1 8.6s ease-in-out infinite;
+    animation-delay: 0s;
     font-size: 2.6rem;
 }
 
+/* 🎉 kanan-atas/mid */
 .hero-bg-emoji.emoji-party {
-    right: 5%;
-    bottom: 24%;
+    top: 18%;
+    right: 6%;
     animation: float-diagonal-1 10.2s ease-in-out infinite;
+    animation-delay: 0.9s;
     font-size: 2.4rem;
 }
 
+/* 🥳 kanan-tengah/bawah */
 .hero-bg-emoji.emoji-party2 {
-    top: 16%;
+    top: 38%;
     right: 10%;
-    animation: float-vertical-2 7.5s ease-in-out infinite;
+    animation: float-vertical-2 7.8s ease-in-out infinite;
+    animation-delay: 0.5s;
     font-size: 2.2rem;
 }
 
+/* 🏆 kiri-bawah */
 .hero-bg-emoji.emoji-trophy {
-    bottom: 10%;
+    bottom: 12%;
     left: 6%;
-    animation: float-diagonal-2 10.5s ease-in-out infinite;
+    animation: float-diagonal-2 11s ease-in-out infinite;
+    animation-delay: 1.2s;
     font-size: 2.7rem;
 }
 
+/* ⚔️ kanan-bawah */
 .hero-bg-emoji.emoji-swords {
-    bottom: 10%;
-    right: 12%;
-    animation: float-vertical-3 8.8s ease-in-out infinite;
+    bottom: 8%;
+    right: 14%;
+    animation: float-vertical-3 9s ease-in-out infinite;
+    animation-delay: 0.2s;
     font-size: 2.3rem;
 }
 
@@ -1684,18 +1695,18 @@ button, input, select, textarea {
         font-size: 1.9rem;
     }
 
-    .hero-bg-emoji.emoji-flag {
+    .hero-bg-emoji.emoji-fire {
         top: 6%;
         left: 4%;
     }
 
     .hero-bg-emoji.emoji-party {
+        top: 22%;
         right: 6%;
-        bottom: 28%;
     }
 
     .hero-bg-emoji.emoji-party2 {
-        top: 18%;
+        top: 44%;
         right: 10%;
     }
 
