@@ -376,100 +376,6 @@ button, input, select, textarea {
     overflow: hidden;
 }
 
-.hero-bg-decorations {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.hero-bg-emoji {
-    position: absolute;
-    font-size: 2.6rem;
-    opacity: 0.45; /* sedikit lebih jelas */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    will-change: transform, opacity;
-    line-height: 1;
-    z-index: 1; /* tetap di bawah .hero-container (z-index:2) */
-}
-
-/* 🔥 kiri-atas */
-.hero-bg-emoji.emoji-fire {
-    top: 8%;
-    left: 4%;
-    animation: float-vertical-1 8.6s ease-in-out infinite;
-    animation-delay: 0s;
-    font-size: 2.6rem;
-}
-
-/* 🎉 kanan-atas/mid */
-.hero-bg-emoji.emoji-party {
-    top: 18%;
-    right: 6%;
-    animation: float-diagonal-1 10.2s ease-in-out infinite;
-    animation-delay: 0.9s;
-    font-size: 2.4rem;
-}
-
-/* 🥳 kanan-tengah/bawah */
-.hero-bg-emoji.emoji-party2 {
-    top: 38%;
-    right: 10%;
-    animation: float-vertical-2 7.8s ease-in-out infinite;
-    animation-delay: 0.5s;
-    font-size: 2.2rem;
-}
-
-/* 🏆 kiri-bawah */
-.hero-bg-emoji.emoji-trophy {
-    bottom: 12%;
-    left: 6%;
-    animation: float-diagonal-2 11s ease-in-out infinite;
-    animation-delay: 1.2s;
-    font-size: 2.7rem;
-}
-
-/* ⚔️ kanan-bawah */
-.hero-bg-emoji.emoji-swords {
-    bottom: 8%;
-    right: 14%;
-    animation: float-vertical-3 9s ease-in-out infinite;
-    animation-delay: 0.2s;
-    font-size: 2.3rem;
-}
-
-@keyframes float-vertical-1 {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    50% { transform: translateY(-12px) translateX(2px); }
-}
-
-@keyframes float-vertical-2 {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    50% { transform: translateY(-10px) translateX(-3px); }
-}
-
-@keyframes float-vertical-3 {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    50% { transform: translateY(-14px) translateX(1px); }
-}
-
-@keyframes float-diagonal-1 {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    50% { transform: translateY(-8px) translateX(-8px); }
-}
-
-@keyframes float-diagonal-2 {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    50% { transform: translateY(-10px) translateX(8px); }
-}
-
 .hero-container {
     position: relative;
     z-index: 2;
@@ -904,6 +810,14 @@ button, input, select, textarea {
     border-color: var(--primary-color);
     color: #ffffff;
     box-shadow: 0 4px 10px rgba(230, 57, 70, 0.2);
+}
+
+.btn-card-action.info {
+    cursor: default;
+    pointer-events: none;
+    background-color: rgba(230, 57, 70, 0.04);
+    border-color: rgba(230, 57, 70, 0.12);
+    color: var(--text-muted);
 }
 
 /* 8. JADWAL LOMBA (TABLE) */
@@ -1691,40 +1605,6 @@ button, input, select, textarea {
         min-width: 160px;
     }
     
-    .hero-bg-emoji {
-        font-size: 1.9rem;
-    }
-
-    .hero-bg-emoji.emoji-fire {
-        /* Turunkan 100px pada mobile agar terlihat jelas */
-        top: calc(6% + 100px);
-        left: 4%;
-        /* Tidak mengubah horizontal atau animasi */
-    }
-
-    .hero-bg-emoji.emoji-party {
-        top: 22%;
-        right: 6%;
-    }
-
-    .hero-bg-emoji.emoji-party2 {
-        top: 44%;
-        right: 10%;
-    }
-
-    /* Mobile: pindahkan 🏆 ke area kiri antara judul dan paragraf */
-    .hero-bg-emoji.emoji-trophy {
-        top: 36%;
-        left: 6%;
-        bottom: auto;
-    }
-
-    /* Mobile: pindahkan ⚔️ ke area antara paragraf dan tombol (kanan) */
-    .hero-bg-emoji.emoji-swords {
-        top: 52%;
-        right: 8%;
-        bottom: auto;
-    }
     
     .section-title {
         font-size: 28px;
