@@ -1696,7 +1696,8 @@ button, input, select, textarea {
     }
 
     .hero-bg-emoji.emoji-fire {
-        top: 6%;
+        /* Geser sedikit ke bawah pada mobile (tambah ~40px) */
+        top: calc(6% + 40px);
         left: 4%;
     }
 
