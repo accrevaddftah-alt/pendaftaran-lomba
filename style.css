@@ -1710,14 +1710,18 @@ button, input, select, textarea {
         right: 10%;
     }
 
+    /* Mobile: pindahkan 🏆 ke area kiri antara judul dan paragraf */
     .hero-bg-emoji.emoji-trophy {
-        bottom: 16%;
+        top: 36%;
         left: 6%;
+        bottom: auto;
     }
 
+    /* Mobile: pindahkan ⚔️ ke area antara paragraf dan tombol (kanan) */
     .hero-bg-emoji.emoji-swords {
-        bottom: 6%;
-        right: 12%;
+        top: 52%;
+        right: 8%;
+        bottom: auto;
     }
     
     .section-title {
