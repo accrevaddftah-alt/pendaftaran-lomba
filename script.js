@@ -10,22 +10,22 @@ const COMPETITION_DATA = {
         'Memindahkan Air ke Dalam Botol'
     ],
     'TK': [
-        'Estafet Pijak Kardus',
+        'Berjalan Menggunakan Kardus',
         'Tiup Bola Pingpong',
         'Makan Kerupuk'
     ],
     'SD Kelas 1–3': [
         'Memasukkan Sedotan ke Dalam Botol',
-        'Meniup Botol Terbang',
+        'Meniup Gelas Terbang',
         'Makan Kerupuk'
     ],
     'SD Kelas 4–6': [
-        'Estafet Karet Pakai Sedotan',
+        'Memindahkan Karet Pakai Sedotan',
         'Cukurukuk',
         'Makan Kerupuk'
     ],
     'SMP Kelas 1': [
-        'Kait Topi',
+        '',
         'Tiup Balon dalam Gelas',
         'Makan Kerupuk dengan Pancingan'
     ]
