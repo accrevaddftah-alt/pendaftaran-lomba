@@ -1696,9 +1696,10 @@ button, input, select, textarea {
     }
 
     .hero-bg-emoji.emoji-fire {
-        /* Geser sedikit ke bawah pada mobile (tambah ~40px) */
-        top: calc(6% + 40px);
+        /* Turunkan 100px pada mobile agar terlihat jelas */
+        top: calc(6% + 100px);
         left: 4%;
+        /* Tidak mengubah horizontal atau animasi */
     }
 
     .hero-bg-emoji.emoji-party {
