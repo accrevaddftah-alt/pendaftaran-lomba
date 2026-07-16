@@ -84,23 +84,6 @@ const renderLombaOptions = (category, preselected = []) => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const batasWaktu = new Date("2026-08-16T23:10:00+07:00");
-    const sekarang = new Date();
-
-    if (sekarang >= batasWaktu) {
-
-        const form = document.getElementById("registration-form");
-
-        form.innerHTML = `
-            <div style="text-align:center;padding:30px;">
-                <h2>Pendaftaran Telah Ditutup</h2>
-                <p>Mohon maaf, pendaftaran lomba sudah ditutup.</p>
-            </div>
-        `;
-
-        return;
-    }
-
     /* ---------------------------------------------------------
        1. PRELOADER & LOADING SCREEN
        --------------------------------------------------------- */
@@ -432,13 +415,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // 4. Validate Address
-            const address = document.getElementById('address');
-            if (address.value.trim() === '') {
-                showError(address, 'Alamat wajib diisi.');
+            // 4. Validate Gang
+            const gang = document.getElementById("gang");
+            const houseNumber = document.getElementById("houseNumber");
+
+            if (gang.value === "") {
+                showError(gang, "Silakan pilih gang.");
                 isValid = false;
             } else {
-                clearError(address);
+                clearError(gang);
+            }
+
+            // 5. Validate Nomor Rumah
+            if (houseNumber.value.trim() === "") {
+                showError(houseNumber, "Nomor rumah wajib diisi.");
+                isValid = false;
+            } else {
+                clearError(houseNumber);
             }
 
             // Focus on first error if invalid
@@ -464,10 +457,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const formData = new FormData();
 
+            const alamatLengkap =
+                gang.value + " " + houseNumber.value.trim();
+
             formData.append("nama", fullname.value.trim());
             formData.append("kategori", categorySelect.value);
             formData.append("lomba", lombaNames.join(", "));
-            formData.append("alamat", address.value.trim());
+            formData.append("alamat", alamatLengkap);
 
             fetch("https://script.google.com/macros/s/AKfycbw5eG8ztj5eiwl7ylX8-vVLrvbHPLDwNpP-MJVmFhGaKFxZHNAUGF1S9Ub-IX03Tfgf/exec", {
                 method: "POST",

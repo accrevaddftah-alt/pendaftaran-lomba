@@ -432,9 +432,33 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="address">Alamat <span class="required">*</span></label>
-                            <textarea id="address" name="address" rows="3" placeholder="Contoh: GANG DAMAI 1 J1/54" required></textarea>
-                            <span class="error-msg" id="address-error">Alamat wajib diisi</span>
+                            <label for="gang">Gang <span class="required">*</span></label>
+
+                            <select id="gang" required>
+                                <option value="">Pilih Gang</option>
+                                <option value="Gang Damai 1">Gang Damai 1</option>
+                                <option value="Gang Damai 2">Gang Damai 2</option>
+                                <option value="Gang Damai 3">Gang Damai 3</option>
+                            </select>
+
+                            <span class="error-msg" id="gang-error">
+                                Gang wajib dipilih
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="houseNumber">Nomor Rumah <span class="required">*</span></label>
+
+                            <input
+                                type="text"
+                                id="houseNumber"
+                                placeholder="Contoh: J1/54"
+                                required
+                            >
+
+                            <span class="error-msg" id="houseNumber-error">
+                                Nomor rumah wajib diisi
+                            </span>
                         </div>
 
                         <div class="form-group">
