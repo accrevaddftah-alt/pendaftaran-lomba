@@ -84,6 +84,23 @@ const renderLombaOptions = (category, preselected = []) => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    const batasWaktu = new Date("2026-08-17T23:10:00+07:00");
+    const sekarang = new Date();
+
+    if (sekarang >= batasWaktu) {
+
+        const form = document.getElementById("registration-form");
+
+        form.innerHTML = `
+            <div style="text-align:center;padding:30px;">
+                <h2>Pendaftaran Telah Ditutup</h2>
+                <p>Mohon maaf, pendaftaran lomba sudah ditutup.</p>
+            </div>
+        `;
+
+        return;
+    }
+
     /* ---------------------------------------------------------
        1. PRELOADER & LOADING SCREEN
        --------------------------------------------------------- */
