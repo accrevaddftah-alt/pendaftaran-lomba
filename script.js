@@ -439,38 +439,61 @@ document.addEventListener('DOMContentLoaded', () => {
             // Collect selected lomba names
             const lombaNames = Array.from(selectedLomba).map(cb => cb.value);
 
-            // If form is valid, trigger simulated submission
+            // Loading button
             if (submitBtn) {
-                submitBtn.classList.add('loading');
+                submitBtn.classList.add("loading");
                 submitBtn.disabled = true;
             }
 
-            setTimeout(() => {
-                // Populate success modal info
-                document.getElementById('registered-name').textContent = fullname.value;
-                document.getElementById('registered-category').textContent = categorySelect.value;
-                document.getElementById('registered-competition').textContent = lombaNames.join(', ');
+            fetch("https://script.google.com/macros/s/AKfycbw5eG8ztj5eiwl7ylX8-vVLrvbHPLDwNpP-MJVmFhGaKFxZHNAUGF1S9Ub-IX03Tfgf/exec", {
+                method: "POST",
+                body: new URLSearchParams({
+                nama: fullname.value.trim(),
+                kategori: categorySelect.value,
+                lomba: lombaNames.join(", "),
+                alamat: address.value.trim()
+            })
+            
+        })
+            
+            .then(res => res.json())
+            .then(data => {
 
-                // Show Success Modal
-                if (successModal) {
-                    successModal.classList.add('active');
+                if (!data.success) {
+                    throw new Error(data.message);
                 }
 
-                // Reset submit button state
+                document.getElementById("registered-name").textContent = fullname.value;
+                document.getElementById("registered-category").textContent = categorySelect.value;
+                document.getElementById("registered-competition").textContent = lombaNames.join(", ");
+
+                if (successModal) {
+                    successModal.classList.add("active");
+                }
+
+                startConfetti();
+
+                regForm.reset();
+                renderLombaOptions("");
+
+            })
+            .catch(err => {
+
+                alert("Pendaftaran gagal dikirim.\n\n" + err.message);
+
+            })
+            .finally(() => {
+
                 if (submitBtn) {
-                    submitBtn.classList.remove('loading');
+                    submitBtn.classList.remove("loading");
                     submitBtn.disabled = false;
                 }
 
-                // Launch Confetti Effect!
-                startConfetti();
+            });
 
-                // Reset Form
-                regForm.reset();
-                renderLombaOptions('');
-            }, 1200);
-        });
-    }
+            });
+
+        }
 
     // Close Modal Event Handler
     if (closeModalBtn && successModal) {
