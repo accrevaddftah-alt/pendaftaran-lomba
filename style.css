@@ -792,6 +792,49 @@ button, input, select, textarea {
     flex-grow: 1;
 }
 
+.lomba-info-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 30px;
+    padding: 22px 24px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    cursor: default;
+    user-select: none;
+}
+
+.lomba-info-icon {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    color: var(--primary-color);
+}
+
+.lomba-info-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.lomba-info-content {
+    flex: 1;
+}
+
+.lomba-info-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 6px;
+}
+
+.lomba-info-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
 .btn-card-action {
     width: 100%;
     text-align: center;
@@ -1612,6 +1655,11 @@ button, input, select, textarea {
     
     .lomba-category {
         padding: 24px 16px;
+    }
+
+    .lomba-info-box {
+        padding: 18px;
+        gap: 12px;
     }
 
     .category-title {

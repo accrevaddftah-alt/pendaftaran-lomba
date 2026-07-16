@@ -25,7 +25,7 @@ const COMPETITION_DATA = {
         'Makan Kerupuk'
     ],
     'SMP Kelas 1': [
-        '',
+        'Memasukan Pensil Kedalam Botol',
         'Tiup Balon dalam Gelas',
         'Makan Kerupuk dengan Pancingan'
     ]
