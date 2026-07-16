@@ -460,8 +460,6 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(() => {
 
-                console.log(text);
-
                 document.getElementById("registered-name").textContent = fullname.value;
                 document.getElementById("registered-category").textContent = categorySelect.value;
                 document.getElementById("registered-competition").textContent = lombaNames.join(", ");
