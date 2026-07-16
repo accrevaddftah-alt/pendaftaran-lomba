@@ -4,7 +4,7 @@
 
 /* Data lomba per kategori */
 const COMPETITION_DATA = {
-    'PAUD / Di Bawah TK': [
+    'PAUD dibawah TK': [
         'Memindahkan Bola dengan Sendok',
         'Mengumpulkan Karet',
         'Memindahkan Air ke Dalam Botol'
@@ -14,12 +14,12 @@ const COMPETITION_DATA = {
         'Tiup Bola Pingpong',
         'Makan Kerupuk'
     ],
-    'SD Kelas 1–3': [
+    'SD 1–3': [
         'Memasukkan Sedotan ke Dalam Botol',
         'Meniup Gelas Terbang',
         'Makan Kerupuk'
     ],
-    'SD Kelas 4–6': [
+    'SD 4–6': [
         'Memindahkan Karet Pakai Sedotan',
         'Cukurukuk',
         'Makan Kerupuk'
