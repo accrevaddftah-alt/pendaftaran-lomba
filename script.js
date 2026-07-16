@@ -445,31 +445,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.disabled = true;
             }
 
+            const formData = new FormData();
+
+            formData.append("nama", fullname.value.trim());
+            formData.append("kategori", categorySelect.value);
+            formData.append("lomba", lombaNames.join(", "));
+            formData.append("alamat", address.value.trim());
+
             fetch("https://script.google.com/macros/s/AKfycbw5eG8ztj5eiwl7ylX8-vVLrvbHPLDwNpP-MJVmFhGaKFxZHNAUGF1S9Ub-IX03Tfgf/exec", {
                 method: "POST",
-                body: new URLSearchParams({
-                nama: fullname.value.trim(),
-                kategori: categorySelect.value,
-                lomba: lombaNames.join(", "),
-                alamat: address.value.trim()
+                mode: "no-cors",
+                body: formData,
+                redirect: "follow"
             })
-            
-        })
-            
-            .then(res => res.json())
-            .then(data => {
+            .then(() => {
 
-                if (!data.success) {
-                    throw new Error(data.message);
-                }
+                console.log(text);
 
                 document.getElementById("registered-name").textContent = fullname.value;
                 document.getElementById("registered-category").textContent = categorySelect.value;
                 document.getElementById("registered-competition").textContent = lombaNames.join(", ");
 
-                if (successModal) {
-                    successModal.classList.add("active");
-                }
+                successModal.classList.add("active");
 
                 startConfetti();
 
@@ -479,15 +476,14 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
 
-                alert("Pendaftaran gagal dikirim.\n\n" + err.message);
+                console.error(err);
+                alert(err);
 
             })
             .finally(() => {
 
-                if (submitBtn) {
-                    submitBtn.classList.remove("loading");
-                    submitBtn.disabled = false;
-                }
+                submitBtn.classList.remove("loading");
+                submitBtn.disabled = false;
 
             });
 
