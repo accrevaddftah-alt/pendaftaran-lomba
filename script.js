@@ -104,10 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <h1 style="font-size:42px;color:#e63946;margin-bottom:15px;">
                 🇮🇩 Pendaftaran akan segera dibuka
             </h1>
-
-            <p style="font-size:18px;color:#555;">
-                Mohon maaf, pendaftaran lomba 17 Agustus 2026 akan segera dibuka.
-            </p>
         </div>
     </div>
     `;
