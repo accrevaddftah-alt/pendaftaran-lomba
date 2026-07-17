@@ -84,27 +84,36 @@ const renderLombaOptions = (category, preselected = []) => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const batasWaktu = new Date("2026-07-17T07:30:00+07:00");
+    const batasWaktu = new Date("2026-07-17T08:10:00+07:00");
     const sekarang = new Date();
 
     if (sekarang >= batasWaktu) {
 
-        const form = document.getElementById("registration-form");
+    document.body.innerHTML = `
+    <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        background:#f8fafc;
+        font-family:Poppins,sans-serif;
+        text-align:center;
+        padding:20px;
+    ">
+        <div>
+            <h1 style="font-size:42px;color:#e63946;margin-bottom:15px;">
+                🇮🇩 Pendaftaran Ditutup
+            </h1>
 
-        form.innerHTML = `
-            <div style="text-align:center;padding:30px;">
-                <h2>Pendaftaran Telah Ditutup</h2>
-                <p>Mohon maaf, pendaftaran lomba sudah ditutup.</p>
-            </div>
-        `;
+            <p style="font-size:18px;color:#555;">
+                Mohon maaf, pendaftaran lomba 17 Agustus 2026 telah ditutup.
+            </p>
+        </div>
+    </div>
+    `;
 
-        const preloader = document.getElementById("preloader");
-        if (preloader) {
-            preloader.classList.add("fade-out");
-        }
-
-        return;
-    }
+    return;
+}
 
     /* ---------------------------------------------------------
        1. PRELOADER & LOADING SCREEN
