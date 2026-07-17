@@ -84,7 +84,7 @@ const renderLombaOptions = (category, preselected = []) => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const batasWaktu = new Date("2026-07-17T08:10:00+07:00");
+    const batasWaktu = new Date("2026-07-17T00:00:00+07:00");
     const sekarang = new Date();
 
     if (sekarang >= batasWaktu) {
