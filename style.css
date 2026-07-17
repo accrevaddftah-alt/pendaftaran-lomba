@@ -129,6 +129,7 @@ button, input, select, textarea {
 .preloader.fade-out {
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
 }
 
 .preloader-content {

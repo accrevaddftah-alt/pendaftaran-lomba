@@ -84,7 +84,7 @@ const renderLombaOptions = (category, preselected = []) => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const batasWaktu = new Date("2026-07-17T06:05:00+07:00");
+    const batasWaktu = new Date("2026-07-17T07:30:00+07:00");
     const sekarang = new Date();
 
     if (sekarang >= batasWaktu) {
@@ -97,6 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>Mohon maaf, pendaftaran lomba sudah ditutup.</p>
             </div>
         `;
+
+        const preloader = document.getElementById("preloader");
+        if (preloader) {
+            preloader.classList.add("fade-out");
+        }
 
         return;
     }
@@ -481,6 +486,8 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append("kategori", categorySelect.value);
             formData.append("lomba", lombaNames.join(", "));
             formData.append("alamat", alamatLengkap);
+
+            console.log("SEBELUM FETCH");
 
             fetch("https://script.google.com/macros/s/AKfycbw5eG8ztj5eiwl7ylX8-vVLrvbHPLDwNpP-MJVmFhGaKFxZHNAUGF1S9Ub-IX03Tfgf/exec", {
                 method: "POST",
