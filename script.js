@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
             Untuk informasi lebih lanjut silakan hubungi panitia.
         </p>
 
-        <a href="https://wa.me/6281234567890?text=Halo%20Panitia,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20lomba."
+        <a href="https://wa.me/62895621672090?text=Halo%20Panitia,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20lomba."
            target="_blank"
            style="
                display:inline-block;
