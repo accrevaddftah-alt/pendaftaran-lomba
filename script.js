@@ -108,6 +108,44 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
     `;
 
+    document.body.innerHTML = `
+<div style="
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#f8fafc;
+    font-family:Poppins,sans-serif;
+    text-align:center;
+    padding:20px;
+">
+    <div>
+        <h1 style="font-size:42px;color:#e63946;margin-bottom:15px;">
+            🇮🇩 Pendaftaran akan segera dibuka
+        </h1>
+
+        <p style="font-size:18px;color:#555;margin-bottom:30px;">
+            Untuk informasi lebih lanjut silakan hubungi panitia.
+        </p>
+
+        <a href="https://wa.me/6281234567890?text=Halo%20Panitia,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20lomba."
+           target="_blank"
+           style="
+               display:inline-block;
+               padding:14px 28px;
+               background:#25D366;
+               color:white;
+               text-decoration:none;
+               border-radius:8px;
+               font-weight:600;
+               font-size:16px;
+           ">
+            <i class="fa-brands fa-whatsapp" style="margin-right:8px;"></i>Hubungi Panitia via WhatsApp
+        </a>
+    </div>
+</div>
+`;
+
     return;
 }
 
