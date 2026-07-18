@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     padding:20px;
 ">
     <div>
-        <h1 style="font-size:42px;color:#e63946;margin-bottom:15px;">
+        <h1 style="font-size:20px;color:#e63946;margin-bottom:15px;">
             🇮🇩 Pendaftaran akan segera dibuka
         </h1>
 
