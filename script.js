@@ -11,7 +11,7 @@ const COMPETITION_DATA = {
     ],
     'TK': [
         'Berjalan Menggunakan Kardus',
-        'Tiup Bola Pingpong',
+        'Menumpukan Gelas dengan Sumpit',
         'Makan Kerupuk'
     ],
     'SD 1-3': [
