@@ -491,6 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append("kategori", categorySelect.value);
             formData.append("lomba", lombaNames.join(", "));
             formData.append("alamat", alamatLengkap);
+            formData.append("pertanyaan", notes.value.trim());
 
             console.log("SEBELUM FETCH");
 
