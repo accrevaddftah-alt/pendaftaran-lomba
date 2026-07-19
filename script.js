@@ -556,9 +556,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error(result.message || "Pendaftaran gagal.");
                 }
 
-                /*nomorDoorprize = Number(result.nomorDoorprize);
+                /*
+                =====================================================
+                                    Fitur Doorprize
+                =====================================================
+                */
+            
+            /*  nomorDoorprize = Number(result.nomorDoorprize);
 
-                console.log("NOMOR DOORPRIZE:", nomorDoorprize);*/
+                console.log("NOMOR DOORPRIZE:", nomorDoorprize);
+            */
 
                 document.getElementById("registered-name").textContent = fullname.value;
                 document.getElementById("registered-category").textContent = categorySelect.value;
@@ -596,19 +603,26 @@ document.addEventListener('DOMContentLoaded', () => {
         successModal.classList.remove('active');
         stopConfetti();
         
-        /*doorprizeImage.src = `assets/${nomorDoorprize}.png`;
+        /*
+        =====================================================
+                            Fitur Doorprize
+        =====================================================
+        */
+        
+    /*  doorprizeImage.src = `assets/${nomorDoorprize}.png`;
 
         doorprizeModal.classList.add('active');*/
         });
 
-    /*if (closeDoorprizeBtn && doorprizeModal) {
+    /*  if (closeDoorprizeBtn && doorprizeModal) {
         closeDoorprizeBtn.addEventListener('click', () => {
         doorprizeModal.classList.remove('active');
     });
-    }*/
+    }
+    */
 
-    /*if (downloadDoorprizeBtn) {
-        downloadDoorprizeBtn.addEventListener('click', () => {
+    /*  if (downloadDoorprizeBtn) {
+            downloadDoorprizeBtn.addEventListener('click', () => {
             const link = document.createElement('a');
 
             link.href = doorprizeImage.src;
@@ -618,7 +632,8 @@ document.addEventListener('DOMContentLoaded', () => {
             link.click();
             document.body.removeChild(link);
         });
-    }*/
+    }
+    */
 
         // Close modal when clicking on overlay
         successModal.addEventListener('click', (e) => {
