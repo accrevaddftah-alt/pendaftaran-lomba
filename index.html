@@ -603,9 +603,34 @@
             <h3 class="modal-title">Pendaftaran Berhasil!</h3>
             <p class="modal-desc">Selamat <strong id="registered-name"></strong>, data pendaftaran Anda untuk kategori <strong id="registered-category"></strong> dengan lomba <strong id="registered-competition"></strong> telah kami terima. Panitia akan segera memproses pendaftaran Anda.</p>
             <button class="btn btn-primary btn-close-modal" id="close-modal-btn">Tutup</button>
+            <!--<button class="btn btn-primary btn-close-modal" id="close-modal-btn">Lihat Doorprize 🎁</button>-->
         </div>
     </div>
 
+    <!--=========================================================
+                FITUR DOORPRIZE
+                BUKA COMMENT JIKA FITUR INI DIPAKAI
+    =========================================================-->
+    <!--DOORPRIZE MODAL  
+    <div class="modal-overlay" id="doorprize-modal">
+        <div class="modal-card doorprize-card">
+            <h2>Doorprize</h2>
+
+        <img
+            id="doorprize-image"
+            src=""
+            alt="Doorprize"
+            class="doorprize-image"
+        >
+
+        <button class="close-modal-btn" id="download-doorprize-btn">Download Doorprize</button>
+
+        <button class="close-modal-btn" id="close-doorprize-btn">Tutup</button>
+
+        </div>
+    </div>
+</div>-->
+    
     <!-- CONFETTI CANVAS -->
     <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
 
@@ -613,3 +638,107 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<!--
+function doPost(e) {
+
+  Logger.log(JSON.stringify(e));
+
+  try {
+
+    const data = {
+    nama: e.parameter.nama,
+    kategori: e.parameter.kategori,
+    lomba: e.parameter.lomba,
+    alamat: e.parameter.alamat,
+    pertanyaan: e.parameter.pertanyaan
+  };
+
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+
+    const kategoriSheet = ss.getSheetByName(data.kategori);
+    Logger.log(data.kategori);
+
+    const semuaPeserta = ss.getSheetByName("SEMUA PESERTA");
+    const pertanyaanSheet = ss.getSheetByName("Pertanyaan warga");
+
+    if (!kategoriSheet) {
+      throw new Error("Sheet kategori tidak ditemukan.");
+    }
+
+    const now = new Date();
+
+    const tanggal = Utilities.formatDate(
+      now,
+      "Asia/Jakarta",
+      "dd/MM/yyyy"
+    );
+
+    const jam = Utilities.formatDate(
+      now,
+      "Asia/Jakarta",
+      "HH:mm"
+    );
+
+    // Nomor urut berdasarkan sheet kategori
+    const nomorKategori = kategoriSheet.getLastRow();
+
+    kategoriSheet.appendRow([
+      nomorKategori,
+      data.nama,
+      data.kategori,
+      data.lomba,
+      data.alamat,
+      tanggal,
+      jam
+    ]);
+
+    // Nomor urut sheet semua peserta
+    const nomorSemua = semuaPeserta.getLastRow();
+
+    semuaPeserta.appendRow([
+      nomorSemua,
+      data.nama,
+      data.kategori,
+      data.lomba,
+      data.alamat,
+      tanggal,
+      jam
+    ]);
+
+    if (data.pertanyaan && data.pertanyaan.trim() !== "") {
+
+    const nomorPertanyaan = pertanyaanSheet.getLastRow();
+
+    pertanyaanSheet.appendRow([
+      nomorPertanyaan,
+      data.nama,
+      data.pertanyaan,
+      tanggal,
+      jam
+    ]);
+
+  } 
+
+  } catch(err) {
+
+    return ContentService
+      .createTextOutput(JSON.stringify({
+
+        success:false,
+
+        message:err.toString()
+
+      }))
+
+      .setMimeType(ContentService.MimeType.JSON);
+
+  }
+
+}
+
+function doGet() {
+  return ContentService
+    .createTextOutput("OK")
+    .setMimeType(ContentService.MimeType.TEXT);
+}-->

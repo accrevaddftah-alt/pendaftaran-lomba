@@ -397,8 +397,17 @@ document.addEventListener('DOMContentLoaded', () => {
        9. DYNAMIC LOMBA OPTIONS & FORM VALIDATION
        --------------------------------------------------------- */
     const regForm = document.getElementById('registration-form');
+    
     const successModal = document.getElementById('success-modal');
     const closeModalBtn = document.getElementById('close-modal-btn');
+
+    const doorprizeModal = document.getElementById('doorprize-modal');
+    const doorprizeImage = document.getElementById('doorprize-image');
+    const closeDoorprizeBtn = document.getElementById('close-doorprize-btn');
+    const downloadDoorprizeBtn = document.getElementById('download-doorprize-btn');
+
+    let nomorDoorprize = null;
+
     const submitBtn = regForm ? regForm.querySelector('.btn-submit') : null;
     const categorySelect = document.getElementById('category');
     const lombaFormGroup = document.getElementById('lomba-form-group');
@@ -535,11 +544,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
             fetch("https://script.google.com/macros/s/AKfycbw5eG8ztj5eiwl7ylX8-vVLrvbHPLDwNpP-MJVmFhGaKFxZHNAUGF1S9Ub-IX03Tfgf/exec", {
                 method: "POST",
-                mode: "no-cors",
                 body: formData,
                 redirect: "follow"
             })
-            .then(() => {
+
+            .then(response => response.json())
+
+            .then(result => {
+
+                if (!result.success) {
+                    throw new Error(result.message || "Pendaftaran gagal.");
+                }
+
+                /*nomorDoorprize = Number(result.nomorDoorprize);
+
+                console.log("NOMOR DOORPRIZE:", nomorDoorprize);*/
 
                 document.getElementById("registered-name").textContent = fullname.value;
                 document.getElementById("registered-category").textContent = categorySelect.value;
@@ -553,6 +572,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderLombaOptions("");
 
             })
+            
             .catch(err => {
 
                 console.error(err);
@@ -573,9 +593,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close Modal Event Handler
     if (closeModalBtn && successModal) {
         closeModalBtn.addEventListener('click', () => {
-            successModal.classList.remove('active');
-            stopConfetti();
+        successModal.classList.remove('active');
+        stopConfetti();
+        
+        /*doorprizeImage.src = `assets/${nomorDoorprize}.png`;
+
+        doorprizeModal.classList.add('active');*/
         });
+
+    /*if (closeDoorprizeBtn && doorprizeModal) {
+        closeDoorprizeBtn.addEventListener('click', () => {
+        doorprizeModal.classList.remove('active');
+    });
+    }*/
+
+    /*if (downloadDoorprizeBtn) {
+        downloadDoorprizeBtn.addEventListener('click', () => {
+            const link = document.createElement('a');
+
+            link.href = doorprizeImage.src;
+            link.download = `${nomorDoorprize}.png`;
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    }*/
 
         // Close modal when clicking on overlay
         successModal.addEventListener('click', (e) => {
