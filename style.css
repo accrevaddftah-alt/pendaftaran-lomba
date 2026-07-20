@@ -906,7 +906,7 @@ button, input, select, textarea {
     background-color: rgba(230, 57, 70, 0.02);
 }
 
-.table-lomba-name {
+.table-lomba-kategori {
     font-weight: 600;
 }
 
@@ -1715,11 +1715,19 @@ button, input, select, textarea {
     }
 
     [data-theme="dark"] .jadwal-table td {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
     
     .jadwal-table td:last-child {
         border-bottom: none;
+    }
+
+    .jadwal-table tbody tr:last-child td {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+        .jadwal-table tbody tr:last-child td:last-child {
+            border-bottom: none;
     }
     
     .jadwal-table td::before {
