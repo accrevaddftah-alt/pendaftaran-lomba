@@ -82,7 +82,7 @@ const renderLombaOptions = (category, preselected = []) => {
     });
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
 
     const batasWaktu = new Date("2026-07-18T::+07:00");
     const sekarang = new Date();
