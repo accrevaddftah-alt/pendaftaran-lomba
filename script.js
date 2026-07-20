@@ -109,16 +109,17 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     document.body.innerHTML = `
-<div style="
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    background:#f8fafc;
-    font-family:Poppins,sans-serif;
-    text-align:center;
-    padding:20px;
-">
+    <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        background:#f8fafc;
+        font-family:Poppins,sans-serif;
+        text-align:center;
+        padding:20px;
+    ">
+    
     <div>
         <h1 style="font-size:20px;color:#e63946;margin-bottom:15px;">
             🇮🇩 Pendaftaran akan segera dibuka
@@ -559,13 +560,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 /*
                 =====================================================
                                     Fitur Doorprize
-                =====================================================
-                */
+                ===================================================== */
             
-            /*  nomorDoorprize = Number(result.nomorDoorprize);
+                nomorDoorprize = Number(result.nomorDoorprize); //=====> Fitur Doorprize
 
-                console.log("NOMOR DOORPRIZE:", nomorDoorprize);
-            */
+                console.log("NOMOR DOORPRIZE:", nomorDoorprize); //=====> Fitur Doorprize
+            
 
                 document.getElementById("registered-name").textContent = fullname.value;
                 document.getElementById("registered-category").textContent = categorySelect.value;
@@ -606,34 +606,38 @@ document.addEventListener('DOMContentLoaded', () => {
         /*
         =====================================================
                             Fitur Doorprize
-        =====================================================
-        */
+        ===================================================== */
         
-    /*  doorprizeImage.src = `assets/${nomorDoorprize}.png`;
+        doorprizeImage.src = `assets/${nomorDoorprize}.png`; //=====> Fitur Doorprize
 
-        doorprizeModal.classList.add('active');*/
+        doorprizeModal.classList.add('active');             //=====> Fitur Doorprize
         });
 
-    /*  if (closeDoorprizeBtn && doorprizeModal) {
-        closeDoorprizeBtn.addEventListener('click', () => {
-        doorprizeModal.classList.remove('active');
+    if (closeDoorprizeBtn && doorprizeModal) {              //=====> Fitur Doorprize
+        closeDoorprizeBtn.addEventListener('click', () => { //=====> Fitur Doorprize
+        doorprizeModal.classList.remove('active');          //=====> Fitur Doorprize
+    });                                                     //=====> Fitur Doorprize
+    }                                                       //=====> Fitur Doorprize
+    
+    /*
+        =====================================================
+                            Fitur Doorprize
+        ===================================================== */
+    
+    
+    if (downloadDoorprizeBtn) {
+        downloadDoorprizeBtn.addEventListener('click', () => {
+        const link = document.createElement('a');
+
+        link.href = doorprizeImage.src;
+        link.download = `${nomorDoorprize}.png`;
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     });
     }
-    */
-
-    /*  if (downloadDoorprizeBtn) {
-            downloadDoorprizeBtn.addEventListener('click', () => {
-            const link = document.createElement('a');
-
-            link.href = doorprizeImage.src;
-            link.download = `${nomorDoorprize}.png`;
-
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
-    }
-    */
+    
 
         // Close modal when clicking on overlay
         successModal.addEventListener('click', (e) => {

@@ -602,8 +602,8 @@
             </div>
             <h3 class="modal-title">Pendaftaran Berhasil!</h3>
             <p class="modal-desc">Selamat <strong id="registered-name"></strong>, data pendaftaran Anda untuk kategori <strong id="registered-category"></strong> dengan lomba <strong id="registered-competition"></strong> telah kami terima. Panitia akan segera memproses pendaftaran Anda.</p>
-            <button class="btn btn-primary btn-close-modal" id="close-modal-btn">Tutup</button>
-            <!--<button class="btn btn-primary btn-close-modal" id="close-modal-btn">Lihat Doorprize 🎁</button>-->
+            <!--<button class="btn btn-primary btn-close-modal" id="close-modal-btn">Tutup</button>-->
+            <button class="btn btn-primary btn-close-modal" id="close-modal-btn">Lihat Doorprize 🎁</button>
         </div>
     </div>
 
@@ -611,7 +611,7 @@
                 FITUR DOORPRIZE
                 BUKA COMMENT JIKA FITUR INI DIPAKAI
     =========================================================-->
-    <!--DOORPRIZE MODAL  
+    <!--DOORPRIZE MODAL--> 
     <div class="modal-overlay" id="doorprize-modal">
         <div class="modal-card doorprize-card">
             <h2> <i class="fa-solid fa-gift"></i> Doorprize </h2>
@@ -623,13 +623,25 @@
             class="doorprize-image"
         >
 
-        <button class="close-modal-btn" id="download-doorprize-btn">Download Doorprize</button>
+        <div style="display:flex; gap:12px; margin-top:20px;">
+            <button
+                class="close-modal-btn"
+                id="download-doorprize-btn"
+                style="flex:1; height:55px; background:#FFD43B; color:#222; border:none; border-radius:12px; font-weight:700;">
+                Download Doorprize
+            </button>
 
-        <button class="close-modal-btn" id="close-doorprize-btn">Tutup</button>
+            <button
+                class="close-modal-btn"
+                id="close-doorprize-btn"
+                style="flex:1; height:55px; background:#FFD43B; color:#222; border:none; border-radius:12px; font-weight:700;">
+                Tutup
+            </button>
+        </div>
 
         </div>
     </div>
-</div>-->
+</div>
     
     <!-- CONFETTI CANVAS -->
     <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
