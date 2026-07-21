@@ -99,7 +99,7 @@ const renderLombaOptions = (category, preselected = []) => {
         const resultImg = document.getElementById('gacha-result-img');
         const resultText = document.getElementById('gacha-result-text');
 
-        const PIN_PANITIA = "merdeka45"; // <--- UBAH PIN RAHASIA KAMU DI SINI!
+        const PIN_PANITIA = "19452026"; // <--- UBAH PIN RAHASIA KAMU DI SINI!
 
         // Variabel Penyimpanan Lokal (Strategi A)
         let availableNumbers = []; 
