@@ -1176,6 +1176,32 @@ button, input, select, textarea {
     display: block;
 }
 
+/* ==========================================
+   TEKS IMBAUAN LOADING (DI BAWAH TOMBOL KIRIM)
+   ========================================== */
+.form-loading-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 16px;                     /* Memberikan jarak spasi di bawah tombol Kirim */
+  padding: 12px 14px;                   /* Ruang dalam kotak */
+  background-color: var(--bg-color);     /* Mengikuti variabel background theme kamu */
+  border: 1px solid var(--border-color); /* Mengikuti border theme kamu */
+  border-radius: var(--border-radius-sm);/* Mengikuti sudut kelengkungan theme kamu */
+  font-size: 12.5px;
+  color: var(--text-muted);             /* Mengikuti warna teks abu-abu theme kamu */
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Icon Tanda Seru */
+.form-loading-note i {
+  color: #f59e0b;                       /* Warna kuning/amber hangat */
+  font-size: 15px;
+  margin-top: 1px;
+  flex-shrink: 0;                       /* Mencegah ikon gepeng/tertekan */
+}
+
 /* 11. FAQ ACCORDION */
 .faq-container {
     max-width: 800px;
