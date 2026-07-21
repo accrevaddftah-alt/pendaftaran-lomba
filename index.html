@@ -377,7 +377,7 @@
                             <tr>
                                 <th>Tanggal</th>
                                 <th>Jam</th>
-                                <th>Kategori</th>
+                                <th>Kategori / Acara</th>
                                 <th>Lokasi</th>
                             </tr>
                         </thead>
@@ -437,6 +437,10 @@
                         <div class="rule-item">
                             <span class="rule-icon">✓</span>
                             <p>Wajib mengisi semua data formulir dengan valid.</p>
+                        </div>
+                        <div class="rule-item">
+                            <span class="rule-icon">✓</span>
+                            <p>untuk mengisi link ini yang memiliki lebih dari satu anak diwajibkan mengisi link link lomba kembali sesuai kategori lomba/usia.</p>
                         </div>
                         <div class="rule-item">
                             <span class="rule-icon">✓</span>
@@ -652,41 +656,45 @@
         </div>
     </div>
 
-    <!--=========================================================
-                FITUR DOORPRIZE
-                BUKA COMMENT JIKA FITUR INI DIPAKAI
-    =========================================================-->
-    <!--DOORPRIZE MODAL--> 
-    <div class="modal-overlay" id="doorprize-modal">
+<!--=========================================================
+            FITUR DOORPRIZE
+            BUKA COMMENT JIKA FITUR INI DIPAKAI
+        =========================================================-->
+        <!--DOORPRIZE MODAL--> 
+        <div class="modal-overlay" id="doorprize-modal">
         <div class="modal-card doorprize-card">
             <h2> <i class="fa-solid fa-gift"></i> Doorprize </h2>
 
-        <img
-            id="doorprize-image"
-            src=""
-            alt="Doorprize"
-            class="doorprize-image"
-        >
+            <img
+                id="doorprize-image"
+                src=""
+                alt="Doorprize"
+                class="doorprize-image"
+            >
 
-        <div style="display:flex; gap:12px; margin-top:20px;">
-            <button
-                class="close-modal-btn"
-                id="download-doorprize-btn"
-                style="flex:1; height:55px; background:#FFD43B; color:#222; border:none; border-radius:12px; font-weight:700;">
-                Download Doorprize
-            </button>
+            <!-- TEKS CATATAN IMBAUAN (DITAMBAHKAN DI SINI) -->
+            <div class="modal-coupon-note">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span>Untuk kupon peserta yang tidak mengikuti lomba, kupon akan dibagikan saat kumpul sebelum jalan santai.</span>
+            </div>
 
-            <button
-                class="close-modal-btn"
-                id="close-doorprize-btn"
-                style="flex:1; height:55px; background:#FFD43B; color:#222; border:none; border-radius:12px; font-weight:700;">
-                Tutup
-            </button>
+            <div style="display:flex; gap:12px; margin-top:16px;">
+                <button
+                    class="close-modal-btn"
+                    id="download-doorprize-btn"
+                    style="flex:1; height:55px; background:#FFD43B; color:#222; border:none; border-radius:12px; font-weight:700;">
+                    Download Doorprize
+                </button>
+
+                <button
+                    class="close-modal-btn"
+                    id="close-doorprize-btn"
+                    style="flex:1; height:55px; background:#FFD43B; color:#222; border:none; border-radius:12px; font-weight:700;">
+                    Tutup
+                </button>
+            </div>
         </div>
-
         </div>
-    </div>
-</div>
 
         <!-- ==========================================
         MODAL GACHA DOORPRIZE (BERDASARKAN NOMOR & GAMBAR)
