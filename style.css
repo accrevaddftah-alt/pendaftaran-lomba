@@ -1407,7 +1407,7 @@ button, input, select, textarea {
     color: var(--text-muted);
 }
 
-/* 13. BACK TO TOP BUTTON */
+/* 13. BACK TO TOP BUTTON 
 .back-to-top-btn {
     position: fixed;
     bottom: 30px;
@@ -1782,5 +1782,347 @@ button, input, select, textarea {
         top: 22px;
         width: 40px;
         height: 40px;
+    }
+}
+
+/* ==========================================
+   STYLE GACHA DOORPRIZE (CLEAN & RESPONSIVE)
+   ========================================== */
+
+/* ==========================================
+   STYLE TOMBOL UNDI NOMOR (ADAPTIF DARK/LIGHT MODE)
+   ========================================== */
+.gacha-trigger-fab {
+  position: static !important; 
+  
+  /* Buat background & border transparan total */
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  
+  /* Gunakan inherit/currentColor agar otomatis ikut warna nav-link tema */
+  color: inherit !important; 
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0;
+  
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.3s ease;
+}
+
+/* Efek Hover (Tetap halus tanpa mengubah warna dasar menjadi merah permanen) */
+.gacha-trigger-fab:hover {
+  opacity: 0.7;
+}
+
+/* Menjaga warna teks TIDAK BERUBAH MERAH saat diklik (Active/Focus state) */
+.gacha-trigger-fab:focus,
+.gacha-trigger-fab:active {
+  color: inherit !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Integrasi Mode Terang (Light Mode) */
+/* (Sesuaikan class '.light-mode' atau 'body.light-theme' sesuai yang websitemu pakai) */
+body.light-mode .gacha-trigger-fab,
+[data-theme="light"] .gacha-trigger-fab {
+  color: #1e293b !important; /* Warna teks gelap saat mode terang */
+}
+
+/* Penyesuaian Khusus Tampilan Mobile */
+@media (max-width: 768px) {
+  .gacha-trigger-fab {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 0;
+  }
+}
+
+/* Modal Overlay */
+.gacha-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: auto;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.gacha-modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal Content Box */
+.gacha-modal-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  padding: 24px 18px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gacha-modal-backdrop.active .gacha-modal-content {
+  transform: scale(1);
+}
+
+.gacha-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.gacha-badge {
+  display: inline-block;
+  background: rgba(224, 0, 0, 0.1);
+  color: var(--red-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.gacha-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.gacha-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+/* Range Inputs */
+.gacha-range-inputs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.gacha-range-inputs div {
+  text-align: left;
+  flex: 1;
+}
+
+.gacha-range-inputs label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.gacha-range-inputs input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Spin Button */
+.gacha-spin-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+
+/* Result Box (Kotak Hijau di Tengah) */
+.gacha-result-box {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gacha-result-icon {
+  font-size: 1.6rem;
+  color: #10b981;
+  margin-bottom: 2px;
+}
+
+.gacha-result-title {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+/* Gambar Kupon Terpilih */
+#gacha-result-img {
+  max-width: 150px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 2px solid #10b981;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Teks Angka Terpilih */
+.gacha-result-item {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #10b981;
+  letter-spacing: 1px;
+}
+
+/* Optimasi Layar HP Kecil (<= 576px) */
+@media (max-width: 576px) {
+  .gacha-modal-content {
+    padding: 18px 14px;
+  }
+
+  .gacha-title {
+    font-size: 1.15rem;
+  }
+
+  #gacha-result-img {
+    max-width: 120px;
+  }
+
+  .gacha-result-item {
+    font-size: 1.4rem;
+  }
+
+  .gacha-trigger-fab {
+    bottom: 75px;
+    right: 15px;
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+}
+
+/* ==========================================================================
+   PERBAIKAN RESPONSIVE MOBILE (MODAL GACHA & TAMPILAN HP)
+   ========================================================================== */
+
+/* 1. Perbaikan umum backdrop modal agar bisa di-scroll di HP */
+.gacha-modal-backdrop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    overflow-y: auto; /* Memastikan bisa scroll jika HP terlalu pendek */
+}
+
+/* 2. Styling khusus untuk layar HP (Maksimal lebar 576px) */
+@media (max-width: 576px) {
+    .gacha-modal-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 16px 14px !important; /* Kurangi padding agar hemat ruang */
+        max-height: 90vh; /* Agar modal tidak meluap keluar layar HP */
+        overflow-y: auto; /* Scroll internal jika konten tinggi */
+        border-radius: 16px !important;
+    }
+
+    /* Ukuran Judul di Mobile */
+    .gacha-title {
+        font-size: 1.25rem !important;
+        margin-top: 4px !important;
+    }
+
+    .gacha-subtitle {
+        font-size: 0.75rem !important;
+        margin-bottom: 12px !important;
+    }
+
+    .gacha-badge {
+        font-size: 0.7rem !important;
+        padding: 3px 8px !important;
+    }
+
+    /* Input Nomor Awal & Akhir di Mobile */
+    .gacha-range-inputs {
+        gap: 8px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .gacha-range-inputs label {
+        font-size: 0.7rem !important;
+    }
+
+    .gacha-range-inputs input {
+        padding: 6px !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Tampilan Gambar Kupon di Mobile */
+    #gacha-img-display {
+        max-width: 130px !important; /* Perkecil gambar agar pas di HP */
+        margin-bottom: 6px !important;
+    }
+
+    /* Teks Angka Slot (#040) di Mobile */
+    .gacha-slot-display {
+        font-size: 1.6rem !important;
+    }
+
+    /* Tombol Acak Lagi di Mobile */
+    .gacha-spin-btn {
+        padding: 10px 16px !important;
+        font-size: 0.95rem !important;
+        margin: 10px 0 !important;
+    }
+
+    /* Kotak Hasil Terpilih (Hijau) di Mobile */
+    .gacha-result-box {
+        padding: 10px !important;
+        margin-top: 10px !important;
+    }
+
+    .gacha-result-title {
+        font-size: 0.75rem !important;
+    }
+
+    .gacha-result-item {
+        font-size: 1.3rem !important;
+    }
+
+    #gacha-result-img {
+        max-width: 100px !important;
     }
 }
