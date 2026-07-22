@@ -694,6 +694,8 @@ const renderLombaOptions = (category, preselected = []) => {
                 showError(houseNumber, "Nomor rumah wajib diisi.");
                 isValid = false;
             } else {
+                // Otomatis ubah inputan menjadi huruf besar semua (misal: "j1/54" -> "J1/54")
+                houseNumber.value = houseNumber.value.toUpperCase();
                 clearError(houseNumber);
             }
 
