@@ -646,10 +646,14 @@ const renderLombaOptions = (category, preselected = []) => {
 
             // 1. Validate Fullname
             const fullname = document.getElementById('fullname');
-            if (fullname.value.trim() === '') {
+            const val = fullname.value.trim();
+
+            if (val === '') {
                 showError(fullname, 'Nama lengkap wajib diisi.');
                 isValid = false;
             } else {
+                // Otomatis ubah setiap awal kata menjadi Huruf Besar (Title Case)
+                fullname.value = val.replace(/\b\w/g, (char) => char.toUpperCase());
                 clearError(fullname);
             }
 
