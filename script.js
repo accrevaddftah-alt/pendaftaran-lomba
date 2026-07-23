@@ -298,7 +298,7 @@ const renderLombaOptions = (category, preselected = []) => {
             user-select: none;
             pointer-events: none;
             z-index: 1;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
         }
     </style>
 
@@ -308,7 +308,7 @@ const renderLombaOptions = (category, preselected = []) => {
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background: url('image/background.png') center/cover no-repeat fixed;
+        background: url('image/image.png') center/cover no-repeat fixed;
         font-family: 'Poppins', sans-serif;
         text-align: center;
         padding: 20px;
@@ -316,11 +316,11 @@ const renderLombaOptions = (category, preselected = []) => {
         position: relative;
         overflow: hidden;
     ">
-        <!-- Overlay Gelap Tipis (Opsional: Agar Gambar & Konten Tetap Kontras & Nyaman Dilihat) -->
+        <!-- Overlay Gelap Tipis agar Teks Tetap Mudah Dibaca -->
         <div style="
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.35);
             z-index: 0;
         "></div>
 
@@ -332,18 +332,19 @@ const renderLombaOptions = (category, preselected = []) => {
         <div class="floating-emoji" style="top: 45%; left: 5%; animation-delay: 1.2s;">🏆</div>
         <div class="floating-emoji" style="top: 48%; right: 6%; animation-delay: 2s;">🎖️</div>
 
-        <!-- KOTAK / CARD PENDAFTARAN -->
+        <!-- KOTAK / CARD TRANSPARAN (GLASSMORPHISM) -->
         <div style="
             position: relative;
             z-index: 2;
-            background-color: #1a233a;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(15, 23, 42, 0.45); /* Background Transparan */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Border Kaca Halus */
             border-radius: 20px;
             padding: 40px 28px;
             max-width: 440px;
             width: 100%;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(2px); /* Efek Kaca Buram / Glass Effect */
+            -webkit-backdrop-filter: blur(12px);
         ">
             <!-- Bendera Indonesia -->
             <div style="font-size: 42px; margin-bottom: 12px;">🇮🇩</div>
@@ -352,9 +353,10 @@ const renderLombaOptions = (category, preselected = []) => {
             <h1 style="
                 font-size: 22px;
                 font-weight: 700;
-                color: #ff4d4d;
+                color: #FFFFFF;
                 margin-bottom: 14px;
                 line-height: 1.3;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.5);
             ">
                 Pendaftaran Akan Segera Dibuka
             </h1>
@@ -362,9 +364,10 @@ const renderLombaOptions = (category, preselected = []) => {
             <!-- Deskripsi -->
             <p style="
                 font-size: 13.5px;
-                color: #94a3b8;
+                color: #e2e8f0; /* Teks dibuat lebih terang agar kontras di latar transparan */
                 margin-bottom: 28px;
                 line-height: 1.6;
+                text-shadow: 0 1px 3px rgba(0,0,0,0.6);
             ">
                 Untuk informasi lebih lanjut mengenai tentang Perlombaan dan lain-lain, silakan hubungi panitia melalui WhatsApp.
             </p>
@@ -385,9 +388,8 @@ const renderLombaOptions = (category, preselected = []) => {
                 border-radius: 10px;
                 font-weight: 600;
                 font-size: 14.5px;
-                box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+                box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
                 box-sizing: border-box;
-                transition: transform 0.2s ease;
             ">
                 <i class="fa-brands fa-whatsapp" style="font-size: 19px;"></i>
                 Hubungi Panitia via WhatsApp
