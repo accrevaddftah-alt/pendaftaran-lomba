@@ -272,63 +272,85 @@ const renderLombaOptions = (category, preselected = []) => {
 
     document.addEventListener('DOMContentLoaded', () => {
 
-    const batasWaktu = new Date("2026-07-30T07:50:00+07:00");
+    const batasWaktu = new Date("2026-07-01T07:50:00+07:00");
     const sekarang = new Date();
 
     if (sekarang >= batasWaktu) {
 
-    // Paksa background HTML dan Body agar langsung gelap total
-    document.documentElement.style.backgroundColor = "#0b132b";
-    document.body.style.backgroundColor = "#0b132b";
+        // Paksa HTML & Body agar terkunci pas 1 layar (tanpa scroll)
+    document.documentElement.style.height = "100%";
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.height = "100%";
     document.body.style.margin = "0";
+    document.body.style.padding = "0";
+    document.body.style.overflow = "hidden";
 
     document.body.innerHTML = `
+    <!-- Container Utama dengan Background Gambar -->
     <div style="
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 100vh;
-        background-color: #0b132b;
+        height: 100vh;
+        width: 100vw;
+        background: url('image/image.png') center/cover no-repeat fixed;
         font-family: 'Poppins', sans-serif;
         text-align: center;
         padding: 20px;
         box-sizing: border-box;
-        ">
-        
+        position: relative;
+        overflow: hidden;
+    ">
+        <!-- Overlay Gelap Tipis agar Teks & Card Lebih Kontras -->
         <div style="
-            background-color: #1c2541;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 40px 30px;
-            max-width: 480px;
-            width: 100%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        ">
-            <div style="
-                font-size: 40px;
-                margin-bottom: 15px;
-                color: white;
-            ">🇮🇩</div>
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 0;
+        "></div>
 
+        <!-- KOTAK / CARD TRANSPARAN (GLASSMORPHISM) -->
+        <div style="
+            position: relative;
+            z-index: 2;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 20px;
+            padding: 36px 24px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(12px);
+            box-sizing: border-box;
+        ">
+            <!-- Bendera Indonesia -->
+            <div style="font-size: 40px; margin-bottom: 10px;">🇮🇩</div>
+
+            <!-- Judul -->
             <h1 style="
-                font-size: 24px;
+                font-size: 21px;
                 font-weight: 700;
-                color: #e63946;
+                color: #ff4d4d;
                 margin-bottom: 12px;
                 line-height: 1.3;
-        ">
+                text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            ">
                 Pendaftaran Akan Segera Dibuka
             </h1>
 
+            <!-- Deskripsi -->
             <p style="
-                font-size: 14px;
-                color: #94a3b8;
-                margin-bottom: 28px;
+                font-size: 13.5px;
+                color: #e2e8f0;
+                margin-bottom: 24px;
                 line-height: 1.6;
+                text-shadow: 0 1px 3px rgba(0,0,0,0.6);
             ">
                 Untuk informasi lebih lanjut mengenai tentang Perlombaan dan lain-lain, silakan hubungi panitia melalui WhatsApp.
             </p>
 
+            <!-- Tombol WhatsApp -->
             <a href="https://wa.me/62895622082567?text=Halo%20Panitia,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20lomba."
             target="_blank"
             style="
@@ -337,17 +359,17 @@ const renderLombaOptions = (category, preselected = []) => {
                 justify-content: center;
                 gap: 10px;
                 width: 100%;
-                padding: 14px 20px;
+                padding: 13px 18px;
                 background-color: #25D366;
                 color: #ffffff;
                 text-decoration: none;
-                border-radius: 8px;
+                border-radius: 10px;
                 font-weight: 600;
-                font-size: 15px;
-                box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
+                font-size: 14px;
+                box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
                 box-sizing: border-box;
             ">
-                <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i>
+                <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i>
                 Hubungi Panitia via WhatsApp
             </a>
         </div>
