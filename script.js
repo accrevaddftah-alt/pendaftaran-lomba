@@ -324,13 +324,17 @@ const renderLombaOptions = (category, preselected = []) => {
             z-index: 0;
         "></div>
 
-        <!-- EMOJI MELAYANG DI AREA KOSONG -->
-        <div class="floating-emoji" style="top: 12%; left: 10%; animation-delay: 0s;">🏁</div>
-        <div class="floating-emoji" style="top: 18%; right: 12%; animation-delay: 0.8s;">🎉</div>
-        <div class="floating-emoji" style="top: 75%; left: 8%; animation-delay: 1.5s;">🥳</div>
-        <div class="floating-emoji" style="top: 80%; right: 10%; animation-delay: 0.5s;">🇮🇩</div>
-        <div class="floating-emoji" style="top: 45%; left: 5%; animation-delay: 1.2s;">🏆</div>
-        <div class="floating-emoji" style="top: 48%; right: 6%; animation-delay: 2s;">🎖️</div>
+        <!-- EMOJI MELAYANG (POSISI TERSEBAR ACAK DI LAYAR MOBILE/DESKTOP) -->
+        <!-- Kiri Atas (Dekat Sumatra) -->
+        <div class="floating-emoji" style="top: 8%; left: 5%; font-size: 28px; animation-delay: 0s;">🏁</div>
+        <!-- Kanan Atas (Dekat Papua) -->
+        <div class="floating-emoji" style="top: 15%; right: 6%; font-size: 32px; animation-delay: 0.7s;">🎉</div>
+        <!-- Kiri Tengah (Samping Card) -->
+        <div class="floating-emoji" style="top: 42%; left: 3%; font-size: 30px; animation-delay: 1.4s;">🏆</div>
+        <!-- Kanan Tengah (Samping Card) -->
+        <div class="floating-emoji" style="top: 48%; right: 4%; font-size: 28px; animation-delay: 2.1s;">🎖️</div>
+        <!-- Kiri Bawah -->
+        <div class="floating-emoji" style="bottom: 8%; left: 10%; font-size: 34px; animation-delay: 1s;">🥳</div>
 
         <!-- KOTAK / CARD TRANSPARAN (GLASSMORPHISM) -->
         <div style="
