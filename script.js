@@ -334,7 +334,7 @@ const renderLombaOptions = (category, preselected = []) => {
         <!-- Kanan Tengah (Samping Card) -->
         <div class="floating-emoji" style="top: 48%; right: 4%; font-size: 28px; animation-delay: 2.1s;">🎖️</div>
         <!-- Kiri Bawah -->
-        <div class="floating-emoji" style="bottom: 8%; left: 10%; font-size: 34px; animation-delay: 1s;">🥳</div>
+        <div class="floating-emoji" style="bottom: 15%; left: 40%; font-size: 34px; animation-delay: 1s;">🥳</div>
 
         <!-- KOTAK / CARD TRANSPARAN (GLASSMORPHISM) -->
         <div style="
