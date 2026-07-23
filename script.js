@@ -293,7 +293,7 @@ const renderLombaOptions = (category, preselected = []) => {
         align-items: center;
         min-height: 100vh;
         width: 100%;
-        background: url('Desain tanpa judul_20260723_122126_0000.jpg') center/cover no-repeat fixed;
+        background: url('image/image.png') center/cover no-repeat fixed;
         font-family: 'Poppins', sans-serif;
         text-align: center;
         padding: 60px 20px; /* Padding atas-bawah ditambah sedikit agar area scroll lebih terasa */
