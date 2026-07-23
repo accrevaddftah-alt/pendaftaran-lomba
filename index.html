@@ -759,6 +759,56 @@
                 </div>
             </div>
         </div>
+
+    <!-- === MODAL POPUP PIN PANITIA CUSTOM === -->
+    <div id="pinModal" class="modal-overlay">
+        <div class="modal-content">
+            <!-- Header: Bendera & Judul -->
+            <div class="modal-header">
+                <div class="modal-flag">
+                    <div class="flag-red"></div>
+                    <div class="flag-white"></div>
+                </div>
+                <h2>Akses Khusus Panitia</h2>
+            </div>
+            
+            <!-- Body: Input PIN -->
+            <div class="modal-body">
+                <label for="adminPinInput">
+                    <i class="fa-solid fa-lock"></i> Masukkan PIN Khusus Panitia:
+                </label>
+                <div class="input-container">
+                    <input 
+                        type="text" 
+                        id="adminPinInput" 
+                        name="pinCodeInput" 
+                        placeholder="Masukkan PIN..." 
+                        autocomplete="off" 
+                        spellcheck="false"
+                    >
+                </div>
+            </div>
+            
+            <!-- Footer: Tombol -->
+            <div class="modal-footer">
+                <button id="btnPinCancel" class="btn-cancel">Batal</button>
+                <button id="btnPinSubmit" class="btn-submit">Verifikasi</button>
+            </div>
+        </div>
+    </div>
+    <!-- ======================================= -->
+
+    <!-- === MODAL ALERT PIN SALAH CUSTOM === -->
+    <div id="alertModal" class="modal-overlay">
+        <div class="modal-content alert-content">
+            <div class="alert-icon">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <h2>Akses Ditolak!</h2>
+            <p>PIN yang Anda masukkan salah. Akses modal pengundian hanya untuk panitia.</p>
+            <button id="btnAlertClose" class="btn-submit btn-alert">Coba Lagi</button>
+        </div>
+    </div>
     
     <!-- CONFETTI CANVAS -->
     <canvas id="confetti-canvas" class="confetti-canvas"></canvas>

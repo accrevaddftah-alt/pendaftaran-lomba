@@ -82,193 +82,273 @@ const renderLombaOptions = (category, preselected = []) => {
     });
 };
 
-/* =========================================================
-    LOGIKA MODAL GACHA (STRATEGI A + B HYBRID + PROTEKSI PIN + MEMORI LOCALSTORAGE)
-    ========================================================= */
+/*  =========================================================
+    LOGIKA MODAL GACHA + MODAL PIN CUSTOM + MEMORI LOCALSTORAGE
+    ========================================================== */
     document.addEventListener('DOMContentLoaded', () => {
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5eG8ztj5eiwl7ylX8-vVLrvbHPLDwNpP-MJVmFhGaKFxZHNAUGF1S9Ub-IX03Tfgf/exec"; 
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5eG8ztj5eiwl7ylX8-vVLrvbHPLDwNpP-MJVmFhGaKFxZHNAUGF1S9Ub-IX03Tfgf/exec"; 
 
-        const gachaModal = document.getElementById('gacha-modal');
-        const gachaTriggerFab = document.getElementById('gacha-trigger-fab');
-        const gachaCloseBtn = document.getElementById('gacha-close-btn');
-        const spinBtn = document.getElementById('gacha-spin-btn');
-        
-        const minInput = document.getElementById('gacha-min-no');
-        const maxInput = document.getElementById('gacha-max-no');
-        
-        const resultImg = document.getElementById('gacha-result-img');
-        const resultText = document.getElementById('gacha-result-text');
+    const gachaModal = document.getElementById('gacha-modal');
+    const gachaTriggerFab = document.getElementById('gacha-trigger-fab');
+    const gachaCloseBtn = document.getElementById('gacha-close-btn');
+    const spinBtn = document.getElementById('gacha-spin-btn');
+    
+    const minInput = document.getElementById('gacha-min-no');
+    const maxInput = document.getElementById('gacha-max-no');
+    
+    const resultImg = document.getElementById('gacha-result-img');
+    const resultText = document.getElementById('gacha-result-text');
 
-        const PIN_PANITIA = "Panitia2026"; // <--- UBAH PIN RAHASIA KAMU DI SINI!
+    const PIN_PANITIA = "Panitia2026"; // PIN Rahasia
 
-        // Variabel Penyimpanan Lokal (Strategi A)
-        let availableNumbers = []; 
+    // Variabel Penyimpanan Lokal
+    let availableNumbers = []; 
 
-        // ==========================================
-        // SIMPAN & MUAT RANGE GACHA (LOCALSTORAGE)
-        // ==========================================
-        
-        // 1. Fungsi memuat angka terakhir yang pernah diketik
-        function loadSavedGachaRange() {
-            if (minInput) {
-                const savedMin = localStorage.getItem('gacha_min_no');
-                if (savedMin !== null) minInput.value = savedMin;
-            }
-            if (maxInput) {
-                const savedMax = localStorage.getItem('gacha_max_no');
-                if (savedMax !== null) maxInput.value = savedMax;
-            }
+    // ==========================================
+    // ELEMEN MODAL PIN & ALERT CUSTOM
+    // ==========================================
+    const pinModal = document.getElementById('pinModal');
+    const pinInput = document.getElementById('adminPinInput');
+    const btnPinCancel = document.getElementById('btnPinCancel');
+    const btnPinSubmit = document.getElementById('btnPinSubmit');
+
+    // Elemen Modal Alert Custom
+    const alertModal = document.getElementById('alertModal');
+    const btnAlertClose = document.getElementById('btnAlertClose');
+
+    // --- Fungsi Buka/Tutup Modal PIN ---
+    function openPinModal() {
+        if (!pinModal) return;
+        pinModal.classList.add('active');
+        if (pinInput) {
+            pinInput.value = '';
+            pinInput.focus();
         }
+    }
 
-        // 2. Simpan otomatis ke memori browser tiap kali angka diubah
-        if (minInput) {
-            minInput.addEventListener('input', () => {
-                localStorage.setItem('gacha_min_no', minInput.value);
-            });
+    function closePinModal() {
+        if (!pinModal) return;
+        pinModal.classList.remove('active');
+    }
+
+    // --- Fungsi Buka/Tutup Modal Alert PIN Salah ---
+    function showAlertModal() {
+        if (alertModal) {
+            alertModal.classList.add('active');
         }
+    }
 
-        if (maxInput) {
-            maxInput.addEventListener('input', () => {
-                localStorage.setItem('gacha_max_no', maxInput.value);
-            });
-        }
-
-        // STRATEGI B: Ambil nomor yang BELUM DIUNDI dari Google Sheets
-        async function loadAvailableNumbers() {
-            if (!spinBtn) return;
-            spinBtn.disabled = true;
-            spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memuat Data...';
-
-            try {
-                const response = await fetch(`${SCRIPT_URL}?action=getAvailableNumbers`);
-                const data = await response.json();
-
-                if (data.success) {
-                    availableNumbers = data.numbers;
-                    console.log("Nomor yang tersedia untuk diundi:", availableNumbers);
-                } else {
-                    console.error("Gagal memuat nomor:", data.message);
-                }
-            } catch (err) {
-                console.error("Gagal terhubung ke Google Sheets:", err);
-            } finally {
-                spinBtn.disabled = false;
-                spinBtn.innerHTML = '<i class="fas fa-arrows-rotate"></i> Acak Sekarang!';
+    function closeAlertModal() {
+        if (alertModal) {
+            alertModal.classList.remove('active');
+            if (pinInput) {
+                pinInput.value = '';
+                pinInput.focus();
             }
         }
+    }
 
-        // =========================================================
-        // Buka Modal dengan Proteksi PIN Panitia
-        // =========================================================
-        if (gachaTriggerFab && gachaModal) {
-            gachaTriggerFab.addEventListener('click', () => {
-                // Minta PIN saat tombol Undi Nomor diklik
-                const inputPin = prompt("🔒 Masukkan PIN Khusus Panitia:");
+    // Event Listener Modal Alert Custom
+    if (btnAlertClose) {
+        btnAlertClose.addEventListener('click', closeAlertModal);
+    }
+
+    if (alertModal) {
+        alertModal.addEventListener('click', (e) => {
+            if (e.target === alertModal) closeAlertModal();
+        });
+    }
+
+    // --- Verifikasi PIN Panitia ---
+    function executePinVerification() {
+        if (!pinInput) return;
+        const enteredPin = pinInput.value;
+
+        if (enteredPin === PIN_PANITIA) {
+            closePinModal();
+            // PIN Benar -> Buka Modal Gacha
+            if (gachaModal) {
+                gachaModal.classList.add('active');
+                gachaModal.setAttribute('aria-hidden', 'false');
                 
-                // Cek apakah PIN yang dimasukkan benar
-                if (inputPin === PIN_PANITIA) {
-                    gachaModal.classList.add('active');
-                    gachaModal.setAttribute('aria-hidden', 'false');
-                    
-                    // Muat angka range terakhir yang tersimpan
-                    loadSavedGachaRange();
-
-                    // Muat nomor yang belum diundi (Strategi B)
-                    loadAvailableNumbers();
-                } else if (inputPin !== null) {
-                    // Jika PIN salah (dan pengguna tidak menekan 'Batal')
-                    alert("❌ PIN Salah! Akses modal pengundian hanya untuk panitia.");
-                }
-            });
-        }
-
-        // Tutup Modal
-        if (gachaCloseBtn && gachaModal) {
-            gachaCloseBtn.addEventListener('click', () => {
-                gachaModal.classList.remove('active');
-                gachaModal.setAttribute('aria-hidden', 'true');
-            });
-        }
-
-        // Update Status di Google Sheets
-        async function updateStatusInSheets(nomorPemenang) {
-            const formData = new URLSearchParams();
-            formData.append("action", "claimDoorprize");
-            formData.append("nomor", nomorPemenang);
-            formData.append("status", "SUDAH DIUNDI");
-
-            try {
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
-                });
-                console.log(`Nomor #${nomorPemenang} berhasil di-update di Sheets.`);
-            } catch (err) {
-                console.error("Gagal update status:", err);
+                // Muat angka range terakhir & data dari Google Sheets
+                loadSavedGachaRange();
+                loadAvailableNumbers();
             }
+        } else {
+            // PIN Salah -> Efek Getar pada Modal PIN + Popup Alert Custom
+            const modalContent = pinModal ? pinModal.querySelector('.modal-content') : null;
+            if (modalContent) {
+                modalContent.classList.add('shake');
+                setTimeout(() => modalContent.classList.remove('shake'), 400);
+            }
+
+            // Tampilkan Popup Alert Custom
+            showAlertModal();
         }
+    }
 
-        // Proses Spin Gacha
-        if (spinBtn) {
-            spinBtn.addEventListener('click', () => {
-                const min = parseInt(minInput ? minInput.value : 1) || 1;
-                const max = parseInt(maxInput ? maxInput.value : 10) || 10;
+    // Event Listener untuk Tombol-tombol di Modal PIN
+    if (btnPinSubmit) {
+        btnPinSubmit.addEventListener('click', executePinVerification);
+    }
 
-                // Filter nomor yang sesuai range min-max dari daftar nomor yang tersedia
-                const validPool = availableNumbers.filter(n => n >= min && n <= max);
+    if (btnPinCancel) {
+        btnPinCancel.addEventListener('click', closePinModal);
+    }
 
-                // Cek jika tidak ada nomor tersisa yang belum diundi
-                if (validPool.length === 0) {
-                    alert("Semua nomor dalam jangkauan ini sudah diundi!");
-                    return;
-                }
+    if (pinInput) {
+        pinInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') executePinVerification();
+        });
+    }
 
-                spinBtn.disabled = true;
-                spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengacak...';
+    if (pinModal) {
+        pinModal.addEventListener('click', (e) => {
+            if (e.target === pinModal) closePinModal();
+        });
+    }
 
-                let duration = 2000;
-                let intervalTime = 80;
-                let elapsed = 0;
+    // ==========================================
+    // SIMPAN & MUAT RANGE GACHA (LOCALSTORAGE)
+    // ==========================================
+    function loadSavedGachaRange() {
+        if (minInput) {
+            const savedMin = localStorage.getItem('gacha_min_no');
+            if (savedMin !== null) minInput.value = savedMin;
+        }
+        if (maxInput) {
+            const savedMax = localStorage.getItem('gacha_max_no');
+            if (savedMax !== null) maxInput.value = savedMax;
+        }
+    }
 
-                // Efek acak visual
-                const timer = setInterval(() => {
-                    const randomVisualNum = Math.floor(Math.random() * (max - min + 1)) + min;
-                    const formattedNum = `#${randomVisualNum.toString().padStart(3, '0')}`;
+    if (minInput) {
+        minInput.addEventListener('input', () => {
+            localStorage.setItem('gacha_min_no', minInput.value);
+        });
+    }
 
-                    if (resultImg) resultImg.src = `assets/${randomVisualNum}.png`;
-                    if (resultText) resultText.textContent = formattedNum;
+    if (maxInput) {
+        maxInput.addEventListener('input', () => {
+            localStorage.setItem('gacha_max_no', maxInput.value);
+        });
+    }
 
-                    elapsed += intervalTime;
+    // Ambil nomor yang BELUM DIUNDI dari Google Sheets
+    async function loadAvailableNumbers() {
+        if (!spinBtn) return;
+        spinBtn.disabled = true;
+        spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memuat Data...';
 
-                    if (elapsed >= duration) {
-                        clearInterval(timer);
+        try {
+            const response = await fetch(`${SCRIPT_URL}?action=getAvailableNumbers`);
+            const data = await response.json();
 
-                        // Pilih Pemenang dari daftar nomor yang belum diundi saja
-                        const randomIndex = Math.floor(Math.random() * validPool.length);
-                        const winnerNum = validPool[randomIndex];
-                        const formattedWinner = `#${winnerNum.toString().padStart(3, '0')}`;
+            if (data.success) {
+                availableNumbers = data.numbers;
+                console.log("Nomor yang tersedia untuk diundi:", availableNumbers);
+            } else {
+                console.error("Gagal memuat nomor:", data.message);
+            }
+        } catch (err) {
+            console.error("Gagal terhubung ke Google Sheets:", err);
+        } finally {
+            spinBtn.disabled = false;
+            spinBtn.innerHTML = '<i class="fas fa-arrows-rotate"></i> Acak Sekarang!';
+        }
+    }
 
-                        if (resultImg) resultImg.src = `assets/${winnerNum}.png`;
-                        if (resultText) resultText.textContent = formattedWinner;
+    // =========================================================
+    // Trigger Buka Modal Utama
+    // =========================================================
+    if (gachaTriggerFab) {
+        gachaTriggerFab.addEventListener('click', () => {
+            openPinModal();
+        });
+    }
 
-                        // STRATEGI A: Hapus nomor pemenang dari memori lokal agar tak keluar lagi
-                        availableNumbers = availableNumbers.filter(num => num !== winnerNum);
+    // Tutup Modal Gacha Utama
+    if (gachaCloseBtn && gachaModal) {
+        gachaCloseBtn.addEventListener('click', () => {
+            gachaModal.classList.remove('active');
+            gachaModal.setAttribute('aria-hidden', 'true');
+        });
+    }
 
-                        spinBtn.disabled = false;
-                        spinBtn.innerHTML = '<i class="fas fa-arrows-rotate"></i> Acak Lagi!';
+    // Update Status di Google Sheets
+    async function updateStatusInSheets(nomorPemenang) {
+        const formData = new URLSearchParams();
+        formData.append("action", "claimDoorprize");
+        formData.append("nomor", nomorPemenang);
+        formData.append("status", "SUDAH DIUNDI");
 
-                        if (typeof startConfetti === 'function') {
-                            startConfetti();
-                        }
-
-                        // Update status di Google Sheets
-                        updateStatusInSheets(winnerNum);
-                    }
-                }, intervalTime);
+        try {
+            await fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
             });
+            console.log(`Nomor #${nomorPemenang} berhasil di-update di Sheets.`);
+        } catch (err) {
+            console.error("Gagal update status:", err);
         }
-    });
+    }
+
+    // Proses Spin Gacha
+    if (spinBtn) {
+        spinBtn.addEventListener('click', () => {
+            const min = parseInt(minInput ? minInput.value : 1) || 1;
+            const max = parseInt(maxInput ? maxInput.value : 10) || 10;
+
+            const validPool = availableNumbers.filter(n => n >= min && n <= max);
+
+            if (validPool.length === 0) {
+                alert("Semua nomor dalam jangkauan ini sudah diundi!");
+                return;
+            }
+
+            spinBtn.disabled = true;
+            spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengacak...';
+
+            let duration = 2000;
+            let intervalTime = 80;
+            let elapsed = 0;
+
+            const timer = setInterval(() => {
+                const randomVisualNum = Math.floor(Math.random() * (max - min + 1)) + min;
+                const formattedNum = `#${randomVisualNum.toString().padStart(3, '0')}`;
+
+                if (resultImg) resultImg.src = `assets/${randomVisualNum}.png`;
+                if (resultText) resultText.textContent = formattedNum;
+
+                elapsed += intervalTime;
+
+                if (elapsed >= duration) {
+                    clearInterval(timer);
+
+                    const randomIndex = Math.floor(Math.random() * validPool.length);
+                    const winnerNum = validPool[randomIndex];
+                    const formattedWinner = `#${winnerNum.toString().padStart(3, '0')}`;
+
+                    if (resultImg) resultImg.src = `assets/${winnerNum}.png`;
+                    if (resultText) resultText.textContent = formattedWinner;
+
+                    availableNumbers = availableNumbers.filter(num => num !== winnerNum);
+
+                    spinBtn.disabled = false;
+                    spinBtn.innerHTML = '<i class="fas fa-arrows-rotate"></i> Acak Lagi!';
+
+                    if (typeof startConfetti === 'function') {
+                        startConfetti();
+                    }
+
+                    updateStatusInSheets(winnerNum);
+                }
+            }, intervalTime);
+        });
+    }
+});
 
     document.addEventListener('DOMContentLoaded', () => {
 

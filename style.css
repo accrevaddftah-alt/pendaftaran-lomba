@@ -2255,3 +2255,204 @@ body.light-mode .gacha-trigger-fab,
         transform: translateY(-7.5px) rotate(-45deg);
     }
     }
+
+    /* === STYLING MODAL POPUP PIN === */
+
+/* 1. Overlay Latar Belakang */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Latar gelap transparan */
+    display: none; /* Sembunyikan secara default */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Pastikan di paling atas */
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+/* Aktifkan overlay (panggil via JS) */
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* 2. Kontainer Konten (Glassmorphism) */
+.modal-content {
+    background: rgba(26, 35, 58, 0.45); /* Latar dark transparan */
+    backdrop-filter: blur(15px); /* Efek Kaca Buram */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease-out;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0); /* Efek slide in down */
+}
+
+/* 3. Header */
+.modal-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Mini Bendera Indonesia */
+.modal-flag {
+    width: 50px;
+    height: 30px;
+    margin: 0 auto 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.flag-red { height: 50%; background-color: #ff4d4d; }
+.flag-white { height: 50%; background-color: #ffffff; }
+
+.modal-header h2 {
+    color: #f1f1f1;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 4. Body */
+.modal-body label {
+    color: #b0b8c3;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+}
+.modal-body label i {
+    color: #ff4d4d; /* Ikon lock merah */
+    margin-right: 5px;
+}
+
+.input-container {
+    position: relative;
+}
+
+/* Input PIN Styling */
+/* Input PIN Styling */
+#adminPinInput {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: 0.3s;
+    box-sizing: border-box;
+
+    /* Menyamarkan teks jadi titik-titik (Aman di Chrome, Edge, Safari & Firefox) */
+    -webkit-text-security: disc;
+    -moz-text-security: disc;
+}
+
+/* Mengatur ukuran teks Placeholder ("Masukkan PIN...") */
+#adminPinInput::placeholder {
+    font-size: 13px;
+    letter-spacing: 0px;
+    color: #8c95a1;
+    
+    /* Memastikan placeholder tidak ikut berubah jadi titik-titik */
+    -webkit-text-security: none;
+    -moz-text-security: none;
+}
+
+.pin-hint {
+    color: #8c95a1;
+    font-size: 11px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* Footer Modal */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* Tombol CSS Umum */
+.modal-footer button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    border: none;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    color: #b0b8c3;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.btn-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.btn-submit {
+    background-color: #ff4d4d; /* Warna merah primer website */
+    color: #ffffff;
+}
+.btn-submit:hover {
+    background-color: #e64141; /* Merah gelap saat hover */
+}
+
+/* Styling Khusus Modal Alert PIN Salah */
+.alert-content {
+    text-align: center;
+    max-width: 360px;
+}
+
+.alert-icon {
+    font-size: 50px;
+    color: #ff4d4d;
+    margin-bottom: 15px;
+}
+
+.alert-content h2 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.alert-content p {
+    color: #b0b8c3;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.btn-alert {
+    width: 100%;
+    padding: 10px;
+}
+
+/* Efek Getar (Shake) saat PIN Salah */
+@keyframes shakeAnimation {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-10px); }
+    40%, 80% { transform: translateX(10px); }
+}
+
+.shake {
+    animation: shakeAnimation 0.4s ease-in-out;
+}
