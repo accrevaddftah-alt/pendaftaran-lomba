@@ -277,13 +277,13 @@ const renderLombaOptions = (category, preselected = []) => {
 
     if (sekarang >= batasWaktu) {
 
-        // Paksa HTML & Body agar terkunci pas 1 layar (tanpa scroll)
-    document.documentElement.style.height = "100%";
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.height = "100%";
+    // Izinkan scroll kembali agar fitur pull-to-refresh di HP berfungsi
+    document.documentElement.style.height = "auto";
+    document.documentElement.style.overflowY = "auto";
+    document.body.style.minHeight = "100vh";
     document.body.style.margin = "0";
     document.body.style.padding = "0";
-    document.body.style.overflow = "hidden";
+    document.body.style.overflowY = "auto";
 
     document.body.innerHTML = `
     <!-- Container Utama dengan Background Gambar -->
@@ -291,15 +291,14 @@ const renderLombaOptions = (category, preselected = []) => {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        width: 100vw;
-        background: url('image/image.png') center/cover no-repeat fixed;
+        min-height: 100vh;
+        width: 100%;
+        background: url('Desain tanpa judul_20260723_122126_0000.jpg') center/cover no-repeat fixed;
         font-family: 'Poppins', sans-serif;
         text-align: center;
-        padding: 20px;
+        padding: 60px 20px; /* Padding atas-bawah ditambah sedikit agar area scroll lebih terasa */
         box-sizing: border-box;
         position: relative;
-        overflow: hidden;
     ">
         <!-- Overlay Gelap Tipis agar Teks & Card Lebih Kontras -->
         <div style="
@@ -316,23 +315,23 @@ const renderLombaOptions = (category, preselected = []) => {
             background: rgba(15, 23, 42, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 20px;
-            padding: 36px 24px;
+            padding: 40px 28px;
             max-width: 420px;
             width: 100%;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             box-sizing: border-box;
         ">
             <!-- Bendera Indonesia -->
-            <div style="font-size: 40px; margin-bottom: 10px;">🇮🇩</div>
+            <div style="font-size: 42px; margin-bottom: 12px;">🇮🇩</div>
 
             <!-- Judul -->
             <h1 style="
-                font-size: 21px;
+                font-size: 22px;
                 font-weight: 700;
                 color: #ff4d4d;
-                margin-bottom: 12px;
+                margin-bottom: 14px;
                 line-height: 1.3;
                 text-shadow: 0 2px 4px rgba(0,0,0,0.5);
             ">
@@ -343,7 +342,7 @@ const renderLombaOptions = (category, preselected = []) => {
             <p style="
                 font-size: 13.5px;
                 color: #e2e8f0;
-                margin-bottom: 24px;
+                margin-bottom: 28px;
                 line-height: 1.6;
                 text-shadow: 0 1px 3px rgba(0,0,0,0.6);
             ">
@@ -359,23 +358,22 @@ const renderLombaOptions = (category, preselected = []) => {
                 justify-content: center;
                 gap: 10px;
                 width: 100%;
-                padding: 13px 18px;
+                padding: 14px 20px;
                 background-color: #25D366;
                 color: #ffffff;
                 text-decoration: none;
                 border-radius: 10px;
                 font-weight: 600;
-                font-size: 14px;
+                font-size: 14.5px;
                 box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
                 box-sizing: border-box;
             ">
-                <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i>
+                <i class="fa-brands fa-whatsapp" style="font-size: 19px;"></i>
                 Hubungi Panitia via WhatsApp
             </a>
         </div>
     </div>
     `;
-
     return;
     }
 
