@@ -82,10 +82,10 @@ const renderLombaOptions = (category, preselected = []) => {
     });
 };
 
-/*  =========================================================
+/*  ========================================================
     LOGIKA MODAL GACHA + MODAL PIN CUSTOM + MEMORI LOCALSTORAGE
-    ========================================================== */
-    document.addEventListener('DOMContentLoaded', () => {
+    ======================================================== */
+document.addEventListener('DOMContentLoaded', () => {
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5eG8ztj5eiwl7ylX8-vVLrvbHPLDwNpP-MJVmFhGaKFxZHNAUGF1S9Ub-IX03Tfgf/exec"; 
 
     const gachaModal = document.getElementById('gacha-modal');
