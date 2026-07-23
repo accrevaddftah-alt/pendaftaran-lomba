@@ -2178,3 +2178,80 @@ body.light-mode .gacha-trigger-fab,
         max-width: 100px !important;
     }
 }
+
+/* ==========================================
+   NAVBAR MOBILE: DROPDOWN CARD (TIDAK FULLSCREEN)
+   ========================================== */
+    @media (max-width: 768px) {
+    /* Tampilkan Tombol Hamburger di Mobile */
+    .hamburger-menu {
+        display: flex;
+        z-index: 1001;
+    }
+
+    /* Ubah Menu Mobile Menjadi Dropdown Card */
+    .nav-menu {
+        position: absolute;
+        top: calc(100% + 10px);              /* Tepat di bawah navbar */
+        right: 16px;                         /* Mengambang di kanan */
+        width: 240px;                        /* Lebar ringkas (tidak fullscreen) */
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius-md, 12px);
+        padding: 16px;
+        box-shadow: var(--shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.3));
+        
+        /* Layout Item Menu */
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+
+        /* Effek Transisi Meluncur & Memudar */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px) scale(0.95);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+    }
+
+    /* Status Saat Hamburger Di-klik (Aktif) */
+    .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+    }
+
+    /* Style Link di Dalam Menu Mobile */
+    .nav-link {
+        padding: 10px 14px;
+        border-radius: var(--border-radius-sm, 6px);
+        font-size: 14.5px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-link:hover {
+        background-color: rgba(230, 57, 70, 0.08);
+    }
+
+    .nav-link::after {
+        display: none; /* Sembunyikan garis bawah di mobile agar lebih rapi */
+    }
+
+    /* Animasi Tombol Hamburger Menjadi X saat Aktif */
+    .hamburger-menu.active span:nth-child(1) {
+        transform: translateY(7.5px) rotate(45deg);
+    }
+
+    .hamburger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-menu.active span:nth-child(3) {
+        transform: translateY(-7.5px) rotate(-45deg);
+    }
+    }

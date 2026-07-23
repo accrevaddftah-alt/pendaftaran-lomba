@@ -272,71 +272,90 @@ const renderLombaOptions = (category, preselected = []) => {
 
     document.addEventListener('DOMContentLoaded', () => {
 
-    const batasWaktu = new Date("2026-07-30T06:15:00+07:00");
+    const batasWaktu = new Date("2026-07-23T07:50:00+07:00");
     const sekarang = new Date();
 
     if (sekarang >= batasWaktu) {
 
+    // Paksa background HTML dan Body agar langsung gelap total
+    document.documentElement.style.backgroundColor = "#0b132b";
+    document.body.style.backgroundColor = "#0b132b";
+    document.body.style.margin = "0";
+
     document.body.innerHTML = `
     <div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
-        background:#f8fafc;
-        font-family:Poppins,sans-serif;
-        text-align:center;
-        padding:20px;
-    ">
-        <div>
-            <h1 style="font-size:42px;color:#e63946;margin-bottom:15px;">
-                🇮🇩 Pendaftaran akan segera dibuka
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #0b132b;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        ">
+        
+        <div style="
+            background-color: #1c2541;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px 30px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        ">
+            <div style="
+                font-size: 40px;
+                margin-bottom: 15px;
+                color: white;
+            ">🇮🇩</div>
+
+            <h1 style="
+                font-size: 24px;
+                font-weight: 700;
+                color: #e63946;
+                margin-bottom: 12px;
+                line-height: 1.3;
+        ">
+                Pendaftaran Akan Segera Dibuka
             </h1>
+
+            <p style="
+                font-size: 14px;
+                color: #94a3b8;
+                margin-bottom: 28px;
+                line-height: 1.6;
+            ">
+                Untuk informasi lebih lanjut mengenai jadwal pendaftaran lomba, silakan hubungi panitia melalui WhatsApp.
+            </p>
+
+            <a href="https://wa.me/62895622082567?text=Halo%20Panitia,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20lomba."
+            target="_blank"
+            style="
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                width: 100%;
+                padding: 14px 20px;
+                background-color: #25D366;
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 15px;
+                box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
+                box-sizing: border-box;
+            ">
+                <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i>
+                Hubungi Panitia via WhatsApp
+            </a>
         </div>
     </div>
     `;
 
-    document.body.innerHTML = `
-    <div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
-        background:#f8fafc;
-        font-family:Poppins,sans-serif;
-        text-align:center;
-        padding:20px;
-    ">
-    
-    <div>
-        <h1 style="font-size:20px;color:#e63946;margin-bottom:15px;">
-            🇮🇩 Pendaftaran akan segera dibuka
-        </h1>
-
-        <p style="font-size:18px;color:#555;margin-bottom:30px;">
-            Untuk informasi lebih lanjut silakan hubungi panitia.
-        </p>
-
-        <a href="https://wa.me/62895622082567?text=Halo%20Panitia,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20lomba."
-           target="_blank"
-           style="
-               display:inline-block;
-               padding:14px 28px;
-               background:#25D366;
-               color:white;
-               text-decoration:none;
-               border-radius:8px;
-               font-weight:600;
-               font-size:16px;
-           ">
-            <i class="fa-brands fa-whatsapp" style="margin-right:8px;"></i>Hubungi Panitia via WhatsApp
-        </a>
-    </div>
-</div>
-`;
-
     return;
-}
+    }
 
     /* ---------------------------------------------------------
        1. PRELOADER & LOADING SCREEN

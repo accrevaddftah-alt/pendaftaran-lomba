@@ -37,22 +37,36 @@
 
     <!-- HEADER / NAVIGATION -->
     <header class="navbar-container" id="navbar">
-        <div class="navbar-wrapper wrapper">
-            <a href="#" class="logo">
-                <span class="flag-stripe red"></span>
-                <span class="flag-stripe white"></span>
-                <span class="logo-text">INDONESIA <span>1945</span></span>
+    <div class="navbar-wrapper wrapper">
+        <a href="#" class="logo">
+            <span class="flag-stripe red"></span>
+            <span class="flag-stripe white"></span>
+            <span class="logo-text">INDONESIA <span>1945</span></span>
+        </a>
+        
+        <nav class="nav-menu" id="nav-menu">
+            <a href="#hero" class="nav-link active">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
             </a>
-            
-            <nav class="nav-menu" id="nav-menu">
-                <a href="#hero" class="nav-link active">Home</a>
-                <a href="#lomba" class="nav-link">Lomba</a>
-                <a href="#jadwal" class="nav-link">Jadwal</a>
-                <!-- Tombol Floating FAB -->
-                <button type="button" class="gacha-trigger-fab" id="gacha-trigger-fab" title="Buka Undian Doorprize">
-                    <i class="fas fa-ticket-alt"></i>
-                    <span>Undi Nomor</span>
-                </button>
+            <a href="#lomba" class="nav-link">
+                <i class="fa-solid fa-trophy"></i>
+                <span>Lomba</span>
+            </a>
+            <a href="#jadwal" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Jadwal</span>
+            </a>
+            <a href="#contact" class="nav-link">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Hubungi Panitia</span>
+            </a>
+
+            <!-- Tag link <a> biasa dengan class nav-link agar stylenya seragam -->
+            <a href="#" class="nav-link" id="gacha-trigger-fab">
+                <i class="fa-solid fa-ticket"></i>
+                <span>Undi Nomor</span>
+            </a>
                 <!--<a href="#faq" class="nav-link">FAQ</a>-->
             </nav>
 
@@ -597,7 +611,7 @@
                 <p class="footer-desc">Mari satukan semangat kemerdekaan dengan berpartisipasi aktif dalam kegiatan perlombaan. Bersama kita merayakan kebersamaan dan sportivitas.</p>
             </div>
 
-            <div class="footer-contact">
+            <div id="contact" class="footer-contact">
                 <h4>Hubungi Panitia</h4>
                 <div class="footer-contact-list">
                     <span class="material-symbols-outlined contact-call-icon">call</span>
@@ -615,16 +629,16 @@
                 </div>
             </div>
 
-            <div class="footer-links">
+            <!--<div class="footer-links">
                 <h4>Menu Navigasi</h4>
                 <ul>
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#lomba">Daftar Lomba</a></li>
                     <li><a href="#jadwal">Jadwal Lomba</a></li>
-                    <!--<li><a href="#faq">FAQ</a></li>-->
+                    <li><a href="#faq">FAQ</a></li>
                 </ul>
             </div>
-        </div>
+        </div>-->
 
         <div class="footer-bottom">
             <div class="wrapper footer-bottom-wrapper">
