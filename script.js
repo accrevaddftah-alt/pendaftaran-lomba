@@ -326,7 +326,7 @@ const renderLombaOptions = (category, preselected = []) => {
                 margin-bottom: 28px;
                 line-height: 1.6;
             ">
-                Untuk informasi lebih lanjut mengenai jadwal pendaftaran lomba, silakan hubungi panitia melalui WhatsApp.
+                Untuk informasi lebih lanjut mengenai tentang Perlombaan dan lain-lain, silakan hubungi panitia melalui WhatsApp.
             </p>
 
             <a href="https://wa.me/62895622082567?text=Halo%20Panitia,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20lomba."
