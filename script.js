@@ -277,51 +277,91 @@ const renderLombaOptions = (category, preselected = []) => {
 
     if (sekarang >= batasWaktu) {
 
-    // Paksa background HTML dan Body agar langsung gelap total
-    document.documentElement.style.backgroundColor = "#0b132b";
-    document.body.style.backgroundColor = "#0b132b";
+    // Paksa latar belakang HTML dan Body
+    document.documentElement.style.height = "100%";
+    document.body.style.minHeight = "100vh";
     document.body.style.margin = "0";
+    document.body.style.overflowX = "hidden";
 
     document.body.innerHTML = `
+    <!-- CSS Animasi Emoji Melayang -->
+    <style>
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .floating-emoji {
+            position: absolute;
+            font-size: 32px;
+            animation: floatAnimation 3s ease-in-out infinite;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+    </style>
+
+    <!-- Container Utama dengan Background Gambar -->
     <div style="
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background-color: #0b132b;
+        background: url('image/background.png') center/cover no-repeat fixed;
         font-family: 'Poppins', sans-serif;
         text-align: center;
         padding: 20px;
         box-sizing: border-box;
-        ">
-        
+        position: relative;
+        overflow: hidden;
+    ">
+        <!-- Overlay Gelap Tipis (Opsional: Agar Gambar & Konten Tetap Kontras & Nyaman Dilihat) -->
         <div style="
-            background-color: #1c2541;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 40px 30px;
-            max-width: 480px;
-            width: 100%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        ">
-            <div style="
-                font-size: 40px;
-                margin-bottom: 15px;
-                color: white;
-            ">🇮🇩</div>
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.25);
+            z-index: 0;
+        "></div>
 
-            <h1 style="
-                font-size: 24px;
-                font-weight: 700;
-                color: #e63946;
-                margin-bottom: 12px;
-                line-height: 1.3;
+        <!-- EMOJI MELAYANG DI AREA KOSONG -->
+        <div class="floating-emoji" style="top: 12%; left: 10%; animation-delay: 0s;">🏁</div>
+        <div class="floating-emoji" style="top: 18%; right: 12%; animation-delay: 0.8s;">🎉</div>
+        <div class="floating-emoji" style="top: 75%; left: 8%; animation-delay: 1.5s;">🥳</div>
+        <div class="floating-emoji" style="top: 80%; right: 10%; animation-delay: 0.5s;">🇮🇩</div>
+        <div class="floating-emoji" style="top: 45%; left: 5%; animation-delay: 1.2s;">🏆</div>
+        <div class="floating-emoji" style="top: 48%; right: 6%; animation-delay: 2s;">🎖️</div>
+
+        <!-- KOTAK / CARD PENDAFTARAN -->
+        <div style="
+            position: relative;
+            z-index: 2;
+            background-color: #1a233a;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 40px 28px;
+            max-width: 440px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
         ">
+            <!-- Bendera Indonesia -->
+            <div style="font-size: 42px; margin-bottom: 12px;">🇮🇩</div>
+
+            <!-- Judul -->
+            <h1 style="
+                font-size: 22px;
+                font-weight: 700;
+                color: #ff4d4d;
+                margin-bottom: 14px;
+                line-height: 1.3;
+            ">
                 Pendaftaran Akan Segera Dibuka
             </h1>
 
+            <!-- Deskripsi -->
             <p style="
-                font-size: 14px;
+                font-size: 13.5px;
                 color: #94a3b8;
                 margin-bottom: 28px;
                 line-height: 1.6;
@@ -329,6 +369,7 @@ const renderLombaOptions = (category, preselected = []) => {
                 Untuk informasi lebih lanjut mengenai tentang Perlombaan dan lain-lain, silakan hubungi panitia melalui WhatsApp.
             </p>
 
+            <!-- Tombol WhatsApp -->
             <a href="https://wa.me/62895622082567?text=Halo%20Panitia,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20lomba."
             target="_blank"
             style="
@@ -341,13 +382,14 @@ const renderLombaOptions = (category, preselected = []) => {
                 background-color: #25D366;
                 color: #ffffff;
                 text-decoration: none;
-                border-radius: 8px;
+                border-radius: 10px;
                 font-weight: 600;
-                font-size: 15px;
-                box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
+                font-size: 14.5px;
+                box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
                 box-sizing: border-box;
+                transition: transform 0.2s ease;
             ">
-                <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i>
+                <i class="fa-brands fa-whatsapp" style="font-size: 19px;"></i>
                 Hubungi Panitia via WhatsApp
             </a>
         </div>
