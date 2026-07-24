@@ -910,11 +910,14 @@ const renderLombaOptions = (category, preselected = []) => {
 
         }
 
-    // Close Modal Event Handler
     if (closeModalBtn && successModal) {
         closeModalBtn.addEventListener('click', () => {
-        successModal.classList.remove('active');
-        stopConfetti();
+            // 1. Tutup modal sukses & hentikan efek confetti dulu
+            successModal.classList.remove('active');
+            stopConfetti();
+            // 1. Tutup modal sukses & hentikan efek confetti dulu
+            successModal.classList.remove('active');
+            stopConfetti();
         
         /*
         =====================================================
@@ -922,6 +925,13 @@ const renderLombaOptions = (category, preselected = []) => {
         ===================================================== */
         
         doorprizeImage.src = `assets/${nomorDoorprize}.png`; //=====> Fitur Doorprize
+
+        // 2. Beri jeda 150ms agar animasi tutup selesai & browser siap membuka modal berikutnya
+            setTimeout(() => {
+                if (doorprizeModal) {
+                    doorprizeModal.classList.add('active'); //=====> Fitur Doorprize
+                }
+            }, 150);
 
         doorprizeModal.classList.add('active');             //=====> Fitur Doorprize
         });

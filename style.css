@@ -1470,37 +1470,27 @@ button, input, select, textarea {
 }
 
 /* ==========================================
-   14. SUCCESS & DOORPRIZE MODAL (UKURAN ASLI)
+   OPTIMASI PERFORMANCE & MODAL RESPONSIVE
    ========================================== */
 
+/* Overlay Modal (Ringan & Tanpa Lag) */
 .modal-overlay {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-color: rgba(15, 23, 42, 0.7) !important;
-    backdrop-filter: blur(5px) !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    /* Gunakan background RGBA pekat agar ringan di HP dibanding blur berat */
+    background-color: rgba(15, 23, 42, 0.82) !important;
     z-index: 10000 !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     
-    /* Mula-mula Tersembunyi */
     opacity: 0 !important;
     visibility: hidden !important;
-    transition: opacity 0.35s ease, visibility 0.35s ease !important;
-
-    /* Sembunyikan Scrollbar */
-    -ms-overflow-style: none !important;
-    scrollbar-width: none !important;
-}
-
-/* Hilangkan Scrollbar Browser */
-.modal-overlay::-webkit-scrollbar,
-.modal-card::-webkit-scrollbar {
-    display: none !important;
-    width: 0 !important;
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s !important;
+    will-change: opacity, visibility; /* Paksa Hardware Acceleration */
 }
 
 .modal-overlay.active {
@@ -1508,22 +1498,26 @@ button, input, select, textarea {
     visibility: visible !important;
 }
 
-/* Ukuran Asli Modal Card */
+/* Modal Card Utama (Ukuran Asli & Proporsional) */
 .modal-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-md);
-    padding: 30px !important; /* Kembali ke ukuran asli */
-    max-width: 460px !important; /* Ukuran asli kartu */
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 18px !important;
+    padding: 28px 24px !important;
     width: 90% !important;
-    box-shadow: var(--shadow-lg);
+    max-width: 480px !important; /* Ukuran pas untuk Desktop */
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
     text-align: center;
     box-sizing: border-box !important;
     
-    /* Animasi Pop-Up Bounce */
+    /* Animasi Buka Modal Cepat & Smooth */
     opacity: 0 !important;
-    transform: scale(0.6) translateY(30px) !important;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease !important;
+    transform: scale(0.92) translateY(15px) !important;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease !important;
+    will-change: transform, opacity;
 }
 
 .modal-overlay.active .modal-card {
@@ -1531,44 +1525,80 @@ button, input, select, textarea {
     transform: scale(1) translateY(0) !important;
 }
 
-/* ==========================================
-   PERBAIKAN GAMBAR DOORPRIZE (RATA TENGAH)
-   ========================================== */
+/* Sembunyikan Scrollbar Modal */
+.modal-card::-webkit-scrollbar,
+.modal-overlay::-webkit-scrollbar {
+    display: none !important;
+}
 
+/* Judul Modal */
+.modal-card h2,
+.doorprize-card h2 {
+    color: var(--text-color) !important;
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    margin-bottom: 12px !important;
+}
+
+/* Wrapper Gambar Kupon (Selalu di Tengah & Nyaman Dilihat) */
 .doorprize-img-wrapper {
-    width: 100%;
+    width: 100% !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+    margin: 10px 0 !important;
 }
 
 .doorprize-image {
     display: block !important;
-    margin: 10px auto 14px auto !important; /* Presisi Tengah */
-    max-width: 100% !important;
-    max-height: 180px !important; /* Ketinggian asli gambar */
+    width: 100% !important;
+    max-width: 380px !important;
+    height: auto !important;
+    max-height: 200px !important;
     object-fit: contain !important;
-    border-radius: 8px !important;
+    border-radius: 10px !important;
 }
 
-/* ==========================================
-   TOMBOL KEMBALI KE UKURAN ASLI (HEIGHT 55PX)
-   ========================================== */
+/* Catatan Kupon (Otomatis Menyesuaikan Dark/Light Mode) */
+.modal-coupon-note {
+    background-color: rgba(255, 255, 255, 0.05) !important; /* Abu-abu netral */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+    padding: 10px 14px !important;
+    margin-top: 12px !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    text-align: left !important;
+}
 
+.modal-coupon-note i {
+    color: #FFD43B !important;
+    font-size: 16px !important;
+    margin-top: 2px !important;
+}
+
+.modal-coupon-note span {
+    color: var(--text-muted, var(--text-color)) !important;
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+}
+
+/* Group Tombol Doorprize */
 .doorprize-btn-group,
 .modal-card > div:last-child {
     display: flex !important;
     gap: 12px !important;
-    margin-top: 16px !important;
+    margin-top: 20px !important;
     width: 100% !important;
 }
 
 .btn-doorprize,
 .doorprize-card button {
     flex: 1 !important;
-    height: 55px !important; /* Kembali ke ukuran tinggi asli 55px */
+    height: 50px !important;
     background: #FFD43B !important;
-    color: #222222 !important;
+    color: #111111 !important;
     border: none !important;
     border-radius: 12px !important;
     font-size: 14px !important;
@@ -1577,13 +1607,36 @@ button, input, select, textarea {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    transition: transform 0.2s ease, opacity 0.2s ease !important;
+    transition: transform 0.15s ease, opacity 0.15s ease !important;
 }
 
-.btn-doorprize:hover,
-.doorprize-card button:hover {
+.btn-doorprize:hover {
     opacity: 0.9 !important;
     transform: translateY(-1px) !important;
+}
+
+/* ==========================================
+   PENYESUAIAN KHUSUS UNTUK HP (MOBILE)
+   ========================================== */
+@media (max-width: 480px) {
+    .modal-card {
+        padding: 20px 16px !important;
+        width: 92% !important;
+        border-radius: 16px !important;
+    }
+
+    .modal-card h2 {
+        font-size: 19px !important;
+    }
+
+    .doorprize-image {
+        max-height: 160px !important;
+    }
+
+    .btn-doorprize {
+        height: 46px !important;
+        font-size: 13px !important;
+    }
 }
 
 /* ==========================================
