@@ -1469,74 +1469,155 @@ button, input, select, textarea {
     height: 20px;
 }
 
-/* 14. SUCCESS MODAL */
+/* ==========================================
+   14. SUCCESS & DOORPRIZE MODAL (UKURAN ASLI)
+   ========================================== */
+
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(5px);
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(15, 23, 42, 0.7) !important;
+    backdrop-filter: blur(5px) !important;
+    z-index: 10000 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    
+    /* Mula-mula Tersembunyi */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.35s ease, visibility 0.35s ease !important;
+
+    /* Sembunyikan Scrollbar */
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+}
+
+/* Hilangkan Scrollbar Browser */
+.modal-overlay::-webkit-scrollbar,
+.modal-card::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
 }
 
 .modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
+/* Ukuran Asli Modal Card */
 .modal-card {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-md);
-    padding: 40px;
-    max-width: 500px;
-    width: 90%;
+    padding: 30px !important; /* Kembali ke ukuran asli */
+    max-width: 460px !important; /* Ukuran asli kartu */
+    width: 90% !important;
     box-shadow: var(--shadow-lg);
     text-align: center;
-    transform: scale(0.85);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-sizing: border-box !important;
+    
+    /* Animasi Pop-Up Bounce */
+    opacity: 0 !important;
+    transform: scale(0.6) translateY(30px) !important;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease !important;
 }
 
 .modal-overlay.active .modal-card {
-    transform: scale(1);
+    opacity: 1 !important;
+    transform: scale(1) translateY(0) !important;
 }
 
+/* ==========================================
+   PERBAIKAN GAMBAR DOORPRIZE (RATA TENGAH)
+   ========================================== */
+
+.doorprize-img-wrapper {
+    width: 100%;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.doorprize-image {
+    display: block !important;
+    margin: 10px auto 14px auto !important; /* Presisi Tengah */
+    max-width: 100% !important;
+    max-height: 180px !important; /* Ketinggian asli gambar */
+    object-fit: contain !important;
+    border-radius: 8px !important;
+}
+
+/* ==========================================
+   TOMBOL KEMBALI KE UKURAN ASLI (HEIGHT 55PX)
+   ========================================== */
+
+.doorprize-btn-group,
+.modal-card > div:last-child {
+    display: flex !important;
+    gap: 12px !important;
+    margin-top: 16px !important;
+    width: 100% !important;
+}
+
+.btn-doorprize,
+.doorprize-card button {
+    flex: 1 !important;
+    height: 55px !important; /* Kembali ke ukuran tinggi asli 55px */
+    background: #FFD43B !important;
+    color: #222222 !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.2s ease, opacity 0.2s ease !important;
+}
+
+.btn-doorprize:hover,
+.doorprize-card button:hover {
+    opacity: 0.9 !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ==========================================
+   3. STYLE ELEMEN BAWAAN MODAL LAINNYA
+   ========================================== */
+
 .modal-success-icon {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: var(--border-radius-round);
     background-color: rgba(22, 163, 74, 0.1);
     color: #16a34a;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 24px auto;
+    margin: 0 auto 16px auto;
 }
 
 .modal-success-icon svg {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
 }
 
 .modal-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 800;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .modal-desc {
-    font-size: 14.5px;
+    font-size: 13.5px;
     color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 28px;
+    line-height: 1.5;
+    margin-bottom: 20px;
 }
 
 .btn-close-modal {
