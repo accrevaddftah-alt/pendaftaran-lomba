@@ -866,110 +866,112 @@ const renderLombaOptions = (category, preselected = []) => {
 
             .then(result => {
 
-                if (!result.success) {
-                    throw new Error(result.message || "Pendaftaran gagal.");
-                }
+            if (!result.success) {
+                throw new Error(result.message || "Pendaftaran gagal.");
+            }
+
+            /*
+            =====================================================
+                                Fitur Doorprize
+            ===================================================== */
+
+            nomorDoorprize = Number(result.nomorDoorprize); //=====> Fitur Doorprize
+
+            console.log("NOMOR DOORPRIZE:", nomorDoorprize); //=====> Fitur Doorprize
+
+            // --- OPTIMASI: PRELOAD GAMBAR DI BACKGROUND AGAR TIDAK DELAY ---
+            if (nomorDoorprize && doorprizeImage) {
+                const imgPreload = new Image();
+                imgPreload.src = `assets/${nomorDoorprize}.png`; // Jalankan download di background
+                doorprizeImage.src = imgPreload.src;            // Pasang ke elemen gambar
+            }
+
+
+            document.getElementById("registered-name").textContent = fullname.value;
+            document.getElementById("registered-category").textContent = categorySelect.value;
+            document.getElementById("registered-competition").textContent = lombaNames.join(", ");
+
+            successModal.classList.add("active");
+
+            startConfetti();
+
+            regForm.reset();
+            renderLombaOptions("");
+
+        })
+
+        .catch(err => {
+
+            console.error(err);
+            alert(err);
+
+        })
+        .finally(() => {
+
+            submitBtn.classList.remove("loading");
+            submitBtn.disabled = false;
+
+        });
+
+        });
+
+        }
+
+        // Close Modal Event Handler (Dioptimasi)
+        if (closeModalBtn && successModal) {
+            closeModalBtn.addEventListener('click', () => {
+                // 1. Tutup modal sukses & hentikan efek confetti
+                successModal.classList.remove('active');
+                stopConfetti();
 
                 /*
                 =====================================================
                                     Fitur Doorprize
                 ===================================================== */
-            
-                nomorDoorprize = Number(result.nomorDoorprize); //=====> Fitur Doorprize
 
-                console.log("NOMOR DOORPRIZE:", nomorDoorprize); //=====> Fitur Doorprize
-            
-
-                document.getElementById("registered-name").textContent = fullname.value;
-                document.getElementById("registered-category").textContent = categorySelect.value;
-                document.getElementById("registered-competition").textContent = lombaNames.join(", ");
-
-                successModal.classList.add("active");
-
-                startConfetti();
-
-                regForm.reset();
-                renderLombaOptions("");
-
-            })
-            
-            .catch(err => {
-
-                console.error(err);
-                alert(err);
-
-            })
-            .finally(() => {
-
-                submitBtn.classList.remove("loading");
-                submitBtn.disabled = false;
-
+                // 2. Beri jeda 100ms agar animasi tutup selesai & modal Doorprize muncul mulus
+                setTimeout(() => {
+                    if (doorprizeModal) {
+                        doorprizeModal.classList.add('active'); //=====> Fitur Doorprize
+                    }
+                }, 100);
             });
-
-            });
-
         }
 
-    if (closeModalBtn && successModal) {
-        closeModalBtn.addEventListener('click', () => {
-            // 1. Tutup modal sukses & hentikan efek confetti dulu
-            successModal.classList.remove('active');
-            stopConfetti();
-            // 1. Tutup modal sukses & hentikan efek confetti dulu
-            successModal.classList.remove('active');
-            stopConfetti();
-        
+        if (closeDoorprizeBtn && doorprizeModal) {              //=====> Fitur Doorprize
+            closeDoorprizeBtn.addEventListener('click', () => { //=====> Fitur Doorprize
+                doorprizeModal.classList.remove('active');      //=====> Fitur Doorprize
+            });                                                 //=====> Fitur Doorprize
+        }                                                       //=====> Fitur Doorprize
+
         /*
         =====================================================
                             Fitur Doorprize
         ===================================================== */
-        
-        doorprizeImage.src = `assets/${nomorDoorprize}.png`; //=====> Fitur Doorprize
 
-        // 2. Beri jeda 150ms agar animasi tutup selesai & browser siap membuka modal berikutnya
-            setTimeout(() => {
-                if (doorprizeModal) {
-                    doorprizeModal.classList.add('active'); //=====> Fitur Doorprize
-                }
-            }, 150);
+        if (downloadDoorprizeBtn) {
+            downloadDoorprizeBtn.addEventListener('click', () => {
+                const link = document.createElement('a');
 
-        doorprizeModal.classList.add('active');             //=====> Fitur Doorprize
-        });
+                link.href = doorprizeImage.src;
+                link.download = `${nomorDoorprize}.png`;
 
-    if (closeDoorprizeBtn && doorprizeModal) {              //=====> Fitur Doorprize
-        closeDoorprizeBtn.addEventListener('click', () => { //=====> Fitur Doorprize
-        doorprizeModal.classList.remove('active');          //=====> Fitur Doorprize
-    });                                                     //=====> Fitur Doorprize
-    }                                                       //=====> Fitur Doorprize
-    
-    /*
-        =====================================================
-                            Fitur Doorprize
-        ===================================================== */
-    
-    
-    if (downloadDoorprizeBtn) {
-        downloadDoorprizeBtn.addEventListener('click', () => {
-        const link = document.createElement('a');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        }
 
-        link.href = doorprizeImage.src;
-        link.download = `${nomorDoorprize}.png`;
-
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    });
-    }
-    
 
         // Close modal when clicking on overlay
-        successModal.addEventListener('click', (e) => {
-            if (e.target === successModal) {
-                successModal.classList.remove('active');
-                stopConfetti();
-            }
-        });
-    }
+        if (successModal) {
+            successModal.addEventListener('click', (e) => {
+                if (e.target === successModal) {
+                    successModal.classList.remove('active');
+                    stopConfetti();
+                }
+            });
+        }
 
 
     /* ---------------------------------------------------------
