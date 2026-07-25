@@ -7,31 +7,34 @@
     /* Font family */
     --font-poppins: 'Poppins', sans-serif;
 
-    /* Light Theme Palette (Premium HSL Red-White Theme) */
-    --bg-color: #fcfcfd;
-    --bg-alt-color: #f7f9fa;
-    --card-bg: #ffffff;
-    --text-color: #1e293b;
-    --text-muted: #64748b;
-    --border-color: #e2e8f0;
-    
+    /* DARK THEME (PERMANEN) */
+    --bg-color: #0f172a;
+    --bg-alt-color: #0a0f1d;
+    --card-bg: #1e293b;
+    --text-color: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+
     --primary-color: #e63946;
     --primary-hover: #d62828;
     --primary-rgb: 230, 57, 70;
-    
-    --secondary-color: #003049;
-    --secondary-hover: #002133;
-    --secondary-rgb: 0, 48, 73;
-    
+
+    --secondary-color: #f8fafc;
+    --secondary-hover: #cbd5e1;
+    --secondary-rgb: 248, 250, 252;
+
     --accent-gold: #f59e0b;
     --accent-silver: #94a3b8;
     --accent-bronze: #b45309;
-    
-    --navbar-bg: rgba(252, 252, 253, 0.85);
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
-    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    --shadow-glow: 0 0 20px rgba(230, 57, 70, 0.35);
+
+    --navbar-bg: rgba(15, 23, 42, 0.85);
+
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3),
+                 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4),
+                 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 20px rgba(230, 57, 70, 0.45);
 
     --border-radius-sm: 8px;
     --border-radius-md: 16px;
@@ -41,24 +44,8 @@
     --transition-speed: 0.3s;
 }
 
-/* Dark Theme Palette override */
-[data-theme="dark"] {
-    --bg-color: #0f172a;
-    --bg-alt-color: #0a0f1d;
-    --card-bg: #1e293b;
-    --text-color: #f8fafc;
-    --text-muted: #94a3b8;
-    --border-color: #334155;
-    
-    --secondary-color: #f8fafc;
-    --secondary-hover: #cbd5e1;
-    --secondary-rgb: 248, 250, 252;
-    
-    --navbar-bg: rgba(15, 23, 42, 0.85);
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 20px rgba(230, 57, 70, 0.45);
+.theme-toggle-btn {
+    display: none !important;
 }
 
 /* 2. BASE STYLES & RESET */

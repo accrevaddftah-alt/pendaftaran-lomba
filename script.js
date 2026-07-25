@@ -477,33 +477,7 @@ const renderLombaOptions = (category, preselected = []) => {
             preloader.classList.add('fade-out');
         }
     }, 3000);
-
-
-    /* ---------------------------------------------------------
-       2. DARK MODE TOGGLE & PERSISTENCE
-       --------------------------------------------------------- */
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-
-    // Apply saved theme on load
-    if (currentTheme === 'dark') {
-        document.body.setAttribute('data-theme', 'dark');
-    }
-
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', () => {
-            let theme = 'light';
-            if (document.body.getAttribute('data-theme') !== 'dark') {
-                document.body.setAttribute('data-theme', 'dark');
-                theme = 'dark';
-            } else {
-                document.body.removeAttribute('data-theme');
-            }
-            localStorage.setItem('theme', theme);
-        });
-    }
-
-
+    
     /* ---------------------------------------------------------
        3. RESPONSIVE MOBILE NAVIGATION
        --------------------------------------------------------- */
