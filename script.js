@@ -304,7 +304,7 @@ const renderLombaOptions = (category, preselected = []) => {
             const validPool = availableNumbers.filter(n => n >= min && n <= max);
 
             if (validPool.length === 0) {
-                alert("Semua nomor dalam Sheet ini sudah diundi!");
+                showCustomAlert("Semua Nomor Sudah Diundi!", "Semua nomor dalam jangkauan ini sudah diundi.");
                 return;
             }
 
@@ -348,7 +348,35 @@ const renderLombaOptions = (category, preselected = []) => {
             }, intervalTime);
         });
     }
-});
+    // =========================================================
+    // TAMBAHKAN FUNGSI ANIMASI KONFETI DI SINI
+    // =========================================================
+    function triggerConfetti() {
+        if (typeof confetti === 'function') {
+            // Pemicu ledakan confetti warna-warni
+            confetti({
+                particleCount: 120,
+                spread: 80,
+                origin: { y: 0.6 }
+            });
+
+            // Efek tambahan semburan dari kiri & kanan
+            confetti({
+                particleCount: 50,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 }
+            });
+            confetti({
+                particleCount: 50,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 }
+            });
+        }
+    }
+
+}); // <-- Ini baris penutup dari document.addEventListener
 
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -1081,4 +1109,23 @@ function selectCompetition(category, competitionName) {
             lombaFormGroup.classList.remove('error');
         }
     }
+}
+
+// Fungsi Helper untuk Menampilkan Custom Alert
+function showCustomAlert(title, message) {
+    const modal = document.getElementById('customAlertModal');
+    const modalTitle = modal.querySelector('.custom-modal-title');
+    const modalDesc = modal.querySelector('.custom-modal-desc');
+    const closeBtn = document.getElementById('customModalBtn');
+
+    if (title) modalTitle.textContent = title;
+    if (message) modalDesc.textContent = message;
+
+    // Tampilkan modal
+    modal.classList.add('active');
+
+    // Listener tombol tutup
+    closeBtn.onclick = function() {
+        modal.classList.remove('active');
+    };
 }

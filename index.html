@@ -16,7 +16,7 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="background-color: #0f172a;">
 
     <!-- LOADING SCREEN -->
     <div id="preloader" class="preloader">
@@ -800,7 +800,27 @@
             <button id="btnAlertClose" class="btn-submit btn-alert">Coba Lagi</button>
         </div>
     </div>
-    
+
+    <!-- Custom Dark Modal / Popup -->
+    <div id="customAlertModal" class="custom-modal-overlay">
+        <div class="custom-modal-box">
+            <!-- Accent line di bagian atas -->
+            <div class="custom-modal-accent"></div>
+            
+            <div class="custom-modal-content">
+                <!-- Icon Exclamation / Peringatan -->
+                <div class="custom-modal-icon">
+                    <i class="fas fa-exclamation"></i>
+                </div>
+                
+                <h3 class="custom-modal-title">Semua Nomor Sudah Diundi!</h3>
+                <p class="custom-modal-desc">Semua nomor dalam jangkauan ini sudah diundi.</p>
+                
+                <button id="customModalBtn" class="custom-modal-btn">Mengerti</button>
+            </div>
+        </div>
+    </div>
+
     <!-- CONFETTI CANVAS -->
     <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
 

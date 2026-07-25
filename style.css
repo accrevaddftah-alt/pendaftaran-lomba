@@ -101,7 +101,7 @@ button, input, select, textarea {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #ffffff;
+    background-color: #0f172a !important; /* Ganti dari #ffffff ke warna gelap */
     z-index: 99999;
     display: flex;
     justify-content: center;
@@ -109,6 +109,7 @@ button, input, select, textarea {
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
+/* Bagian ini boleh dihapus atau dibiarkan saja */
 [data-theme="dark"] .preloader {
     background-color: #0f172a;
 }
@@ -1550,6 +1551,10 @@ button, input, select, textarea {
     max-height: 200px !important;
     object-fit: contain !important;
     border-radius: 10px !important;
+
+    /* Tambahkan dua baris ini agar gambar rata tengah di desktop & HP */
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 /* Catatan Kupon (Otomatis Menyesuaikan Dark/Light Mode) */
@@ -2582,4 +2587,132 @@ body.light-mode .gacha-trigger-fab,
 
 .shake {
     animation: shakeAnimation 0.4s ease-in-out;
+}
+
+/* ==========================================
+   CUSTOM MODAL (DARK THEME)
+   ========================================== */
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75); /* Dark Blur Backdrop */
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Class untuk menampilkan modal */
+.custom-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.custom-modal-box {
+    background-color: #1e293b; /* Warna box menyesuaikan dark theme */
+    width: 90%;
+    max-width: 400px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.custom-modal-overlay.active .custom-modal-box {
+    transform: scale(1);
+}
+
+/* Garis aksen merah di bagian atas */
+.custom-modal-accent {
+    height: 6px;
+    background: linear-gradient(90deg, #ef4444, #dc2626);
+    width: 100%;
+}
+
+.custom-modal-content {
+    padding: 28px 24px;
+    text-align: center;
+}
+
+/* Lingkaran Icon Merah */
+.custom-modal-icon {
+    width: 56px;
+    height: 56px;
+    background-color: #ef4444;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px auto;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* ----------------------------------------------------
+   ANIMASI GETAR UNTUK ICON TANDA SERU (CSS ONLY)
+   ---------------------------------------------------- */
+@keyframes shakeAlert {
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(-12deg); }
+    30% { transform: rotate(12deg); }
+    45% { transform: rotate(-8deg); }
+    60% { transform: rotate(8deg); }
+    75% { transform: rotate(-4deg); }
+    90% { transform: rotate(4deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Menjalankan animasi getar saat modal diberi class .active */
+.custom-modal-overlay.active .custom-modal-icon {
+    animation: shakeAlert 0.5s ease-in-out 0.2s; /* delay 0.2s agar pas dengan popup muncul */
+}
+
+/* ---------------------------------------------------- */
+
+.custom-modal-title {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.custom-modal-desc {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    line-height: 1.4;
+}
+
+/* Tombol Merah */
+.custom-modal-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #ef4444;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.25);
+}
+
+.custom-modal-btn:hover {
+    background-color: #dc2626;
+}
+
+.custom-modal-btn:active {
+    transform: scale(0.98);
 }
