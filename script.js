@@ -304,7 +304,7 @@ const renderLombaOptions = (category, preselected = []) => {
             const validPool = availableNumbers.filter(n => n >= min && n <= max);
 
             if (validPool.length === 0) {
-                alert("Semua nomor dalam jangkauan ini sudah diundi!");
+                alert("Semua nomor dalam Sheet ini sudah diundi!");
                 return;
             }
 
