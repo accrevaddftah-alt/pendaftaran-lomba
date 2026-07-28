@@ -31,6 +31,98 @@ const COMPETITION_DATA = {
     ]
 };
 
+
+/* =========================================================
+   SIMULASI FITUR DINAMIS KELUARGA (MEMUNCULKAN FORM)
+   ========================================================= */
+const dropdownJumlah = document.getElementById('jumlah-peserta');
+const wadahPeserta = document.getElementById('wadah-peserta-dinamis');
+
+if (dropdownJumlah) {
+    dropdownJumlah.addEventListener('change', function() {
+        const jumlah = parseInt(this.value);
+        wadahPeserta.innerHTML = ''; // Kosongkan area bawah setiap kali angka diganti
+
+        // Skenario 1: Jika pilih 0 (Hanya Doorprize)
+        if (jumlah === 0) {
+            wadahPeserta.innerHTML = `
+                <div style="background: rgba(230,57,70,0.05); border-left: 3px solid var(--primary-color); padding: 12px; font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px;">
+                    <i class="fa-solid fa-circle-info" style="color: var(--primary-color);"></i> 
+                    Keluarga ini hanya akan mendapatkan kupon Doorprize dan tidak terdaftar di lomba anak-anak.
+                </div>`;
+            return;
+        }
+
+        // Skenario 2: Jika pilih 1, 2, 3, dst (Mencetak form otomatis)
+        let htmlForm = '';
+        for (let i = 1; i <= jumlah; i++) {
+            htmlForm += `
+                <div class="peserta-box" style="border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 20px; background-color: var(--bg-alt-color);">
+                    <h4 style="margin-bottom: 16px; color: var(--primary-color); font-size: 15px; border-bottom: 1px dashed var(--border-color); padding-bottom: 8px;">
+                        Data Peserta Ke-${i}
+                    </h4>
+                    
+                    <div class="form-group">
+                        <label>Nama Peserta ${i} <span class="required">*</span></label>
+                        <input type="text" id="nama-peserta-${i}" placeholder="Masukkan nama peserta..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kategori Lomba Peserta ${i} <span class="required">*</span></label>
+                        <select class="dynamic-category" data-index="${i}" required>
+                            <option value="" disabled selected>Pilih kategori lomba</option>
+                            <option value="PAUD dibawah TK">PAUD / Di Bawah TK</option>
+                            <option value="TK">TK</option>
+                            <option value="SD 1-3">SD Kelas 1–3</option>
+                            <option value="SD 4-6">SD Kelas 4–6</option>
+                            <option value="SMP Kelas 1">SMP Kelas 1</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pilih Lomba untuk Peserta ${i} <span class="required">*</span></label>
+                        <div id="opsi-lomba-${i}" class="lomba-checkbox-group">
+                            <p style="font-size: 12.5px; color: var(--text-muted);">Pilih kategori di atas terlebih dahulu.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Tampilkan kotak-kotak HTML yang sudah dirakit ke layar
+        wadahPeserta.innerHTML = htmlForm;
+        
+        // Aktifkan fungsi agar kategori yang dipilih bisa memunculkan lomba yang sesuai
+        jalankanLogikaKategori();
+    });
+}
+
+function jalankanLogikaKategori() {
+    const semuaPilihanKategori = document.querySelectorAll('.dynamic-category');
+    
+    semuaPilihanKategori.forEach(selectDropdown => {
+        selectDropdown.addEventListener('change', function() {
+            const index = this.getAttribute('data-index');
+            const kategoriDipilih = this.value;
+            const wadahCentangLomba = document.getElementById(`opsi-lomba-${index}`);
+            
+            wadahCentangLomba.innerHTML = ''; // Kosongkan centang sebelumnya
+            
+            // Cocokkan dengan data perlombaan di atas
+            if (COMPETITION_DATA[kategoriDipilih]) {
+                COMPETITION_DATA[kategoriDipilih].forEach((namaLomba) => {
+                    wadahCentangLomba.innerHTML += `
+                        <label class="lomba-checkbox-item">
+                            <input type="checkbox" name="lomba-peserta-${index}" value="${namaLomba}">
+                            <span>${namaLomba}</span>
+                        </label>
+                    `;
+                });
+            }
+        });
+    });
+}
+
 const renderLombaOptions = (category, preselected = []) => {
     const lombaOptionsContainer = document.getElementById('lomba-options');
     const lombaHint = document.getElementById('lomba-hint');
@@ -86,7 +178,7 @@ const renderLombaOptions = (category, preselected = []) => {
     LOGIKA MODAL GACHA + MODAL PIN CUSTOM + MEMORI LOCALSTORAGE
     ======================================================== */
     document.addEventListener('DOMContentLoaded', () => {
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5eG8ztj5eiwl7ylX8-vVLrvbHPLDwNpP-MJVmFhGaKFxZHNAUGF1S9Ub-IX03Tfgf/exec"; 
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwa2TvP4dMh-ubK1ZbwjiRhs1uf7HPGj5vBj5rtAr6Ui6GLdWmPqIBQZWYLSV27DEqOVQ/exec"; 
 
     const gachaModal = document.getElementById('gacha-modal');
     const gachaTriggerFab = document.getElementById('gacha-trigger-fab');
@@ -99,7 +191,7 @@ const renderLombaOptions = (category, preselected = []) => {
     const resultImg = document.getElementById('gacha-result-img');
     const resultText = document.getElementById('gacha-result-text');
 
-    const PIN_PANITIA = "Panitia2026"; // PIN Rahasia
+    const PIN_PANITIA = "19452026"; // PIN Rahasia
 
     // Variabel Penyimpanan Lokal
     let availableNumbers = []; 
@@ -235,27 +327,37 @@ const renderLombaOptions = (category, preselected = []) => {
         });
     }
 
-    // Ambil nomor yang BELUM DIUNDI dari Google Sheets
+    // Ambil nomor yang BELUM DIUNDI dari Google Sheets (DIUBAH KE METODE POST)
     async function loadAvailableNumbers() {
         if (!spinBtn) return;
         spinBtn.disabled = true;
         spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memuat Data...';
 
         try {
-            const response = await fetch(`${SCRIPT_URL}?action=getAvailableNumbers`);
+            const formData = new FormData();
+            formData.append("action", "getAvailableNumbers");
+
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: formData,
+                redirect: 'follow'
+            });
+            
             const data = await response.json();
 
             if (data.success) {
-                availableNumbers = data.numbers;
+                availableNumbers = data.numbers; // Mengambil array angka dari server
                 console.log("Nomor yang tersedia untuk diundi:", availableNumbers);
             } else {
                 console.error("Gagal memuat nomor:", data.message);
             }
-        } catch (err) {
-            console.error("Gagal terhubung ke Google Sheets:", err);
-        } finally {
-            spinBtn.disabled = false;
-            spinBtn.innerHTML = '<i class="fas fa-arrows-rotate"></i> Acak Sekarang!';
+        
+            } catch (err) {
+                console.error("Gagal terhubung ke Google Sheets:", err);
+        
+            } finally {
+                spinBtn.disabled = false;
+                spinBtn.innerHTML = '<i class="fas fa-arrows-rotate"></i> Acak Sekarang!';
         }
     }
 
@@ -317,8 +419,10 @@ const renderLombaOptions = (category, preselected = []) => {
                 return;
             }
 
-            const validPool = availableNumbers.filter(n => n >= min && n <= max);
-
+            // 3. Pelindung: Pastikan data benar-benar berwujud Array agar tidak error saat difilter
+            let daftarNomor = Array.isArray(availableNumbers) ? availableNumbers : [];
+            const validPool = daftarNomor.filter(n => n >= min && n <= max);
+            
             if (validPool.length === 0) {
                 showCustomAlert("Semua Nomor Sudah Diundi!", "Semua nomor dalam jangkauan ini sudah diundi.");
                 return;
@@ -776,7 +880,7 @@ const renderLombaOptions = (category, preselected = []) => {
         });
     }
 
-    if (regForm) {
+    /*if (regForm) {
         regForm.addEventListener('submit', (e) => {
             e.preventDefault();
             let isValid = true;
@@ -891,7 +995,7 @@ const renderLombaOptions = (category, preselected = []) => {
             /*
             =====================================================
                                 Fitur Doorprize
-            ===================================================== */
+            =====================================================
 
             nomorDoorprize = Number(result.nomorDoorprize); //=====> Fitur Doorprize
 
@@ -933,7 +1037,183 @@ const renderLombaOptions = (category, preselected = []) => {
 
         });
 
-        }
+        }*/
+
+        if (regForm) {
+        regForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let isValid = true;
+
+            // 1. Validasi Nama Perwakilan
+            const namaPerwakilan = document.getElementById('nama-perwakilan');
+            if (namaPerwakilan.value.trim() === '') {
+                showError(namaPerwakilan, 'Nama perwakilan wajib diisi.');
+                isValid = false;
+            } else {
+                namaPerwakilan.value = namaPerwakilan.value.trim().replace(/\b\w/g, (c) => c.toUpperCase());
+                clearError(namaPerwakilan);
+            }
+
+            // 2. Validasi Total Anggota Keluarga
+            const totalKeluarga = document.getElementById('total-keluarga');
+            if (totalKeluarga.value.trim() === '' || parseInt(totalKeluarga.value) < 1) {
+                showError(totalKeluarga, 'Total keluarga wajib diisi minimal 1.');
+                isValid = false;
+            } else {
+                clearError(totalKeluarga);
+            }
+
+            // 3. Validasi Jumlah Peserta Lomba
+            const jumlahPesertaSelect = document.getElementById('jumlah-peserta');
+            if (jumlahPesertaSelect.value === '') {
+                // Beri penanda error manual
+                isValid = false;
+                alert('Silakan pilih jumlah anggota yang ikut lomba.');
+            }
+
+            // 4. Validasi Gang & Nomor Rumah (Menggunakan elemen lama Anda)
+            const gang = document.getElementById("gang");
+            const houseNumber = document.getElementById("houseNumber");
+
+            if (gang.value === "") {
+                showError(gang, "Silakan pilih gang.");
+                isValid = false;
+            } else {
+                clearError(gang);
+            }
+
+            if (houseNumber.value.trim() === "") {
+                showError(houseNumber, "Nomor rumah wajib diisi.");
+                isValid = false;
+            } else {
+                houseNumber.value = houseNumber.value.toUpperCase();
+                clearError(houseNumber);
+            }
+
+            // 5. Validasi Kotak Dinamis Peserta (Jika memilih >= 1 peserta)
+            const jumlahPeserta = parseInt(jumlahPesertaSelect.value) || 0;
+            let dataPesertaList = [];
+
+            for (let i = 1; i <= jumlahPeserta; i++) {
+                const inputNamaPeserta = document.getElementById(`nama-peserta-${i}`);
+                const selectKategori = document.querySelector(`.dynamic-category[data-index="${i}"]`);
+                const kotakCentangLomba = document.querySelectorAll(`input[name="lomba-peserta-${i}"]:checked`);
+
+                if (!inputNamaPeserta || inputNamaPeserta.value.trim() === '') {
+                    alert(`Nama untuk Peserta Ke-${i} wajib diisi.`);
+                    isValid = false;
+                    break;
+                }
+
+                if (!selectKategori || selectKategori.value === '') {
+                    alert(`Kategori lomba untuk Peserta Ke-${i} wajib dipilih.`);
+                    isValid = false;
+                    break;
+                }
+
+                if (kotakCentangLomba.length === 0) {
+                    alert(`Minimal pilih satu lomba untuk Peserta Ke-${i}.`);
+                    isValid = false;
+                    break;
+                }
+
+                // Kumpulkan nama-nama lomba yang dicentang
+                let namaLombaDipilih = Array.from(kotakCentangLomba).map(cb => cb.value);
+
+                // Masukkan ke dalam daftar data peserta
+                dataPesertaList.push({
+                    nama: inputNamaPeserta.value.trim(),
+                    kategori: selectKategori.value,
+                    lomba: namaLombaDipilih.join(", ")
+                });
+            }
+
+            if (!isValid) return;
+
+            // Jika lolos semua validasi, aktifkan animasi loading tombol
+            if (submitBtn) {
+                submitBtn.classList.add("loading");
+                submitBtn.disabled = true;
+            }
+
+            // Gabungkan alamat rumah
+            const alamatLengkap = gang.value + " " + houseNumber.value.trim();
+
+            // Rancang data yang akan dikirim ke Google Apps Script
+            const formData = new FormData();
+            formData.append("namaPerwakilan", namaPerwakilan.value.trim());
+            formData.append("totalKeluarga", totalKeluarga.value);
+            formData.append("alamat", alamatLengkap);
+            formData.append("pertanyaan", notes ? notes.value.trim() : '');
+            
+            // 1. Teks Lengkap (Untuk Sheet SEMUA PESERTA)
+            let ringkasanDetailPeserta = dataPesertaList.length > 0 
+                ? dataPesertaList.map((p, idx) => `${idx + 1}. ${p.nama} (${p.kategori}: ${p.lomba})`).join(" | ")
+                : "Hanya Kupon Doorprize / Jalan Santai";
+
+            // 2. Teks Ringkas Tanpa Lomba (Untuk Sheet DOORPRIZE)
+            let ringkasanDoorprize = dataPesertaList.length > 0 
+                ? dataPesertaList.map(p => `${p.nama} (${p.kategori})`).join(" | ")
+                : "Hanya Kupon Doorprize / Jalan Santai";
+
+            formData.append("detailPeserta", ringkasanDetailPeserta);
+            formData.append("detailDoorprize", ringkasanDoorprize); 
+            
+            // 3. Kirim Data Mentah JSON (Agar Panitia bisa memisahkannya ke Sheet Kategori)
+            formData.append("dataPesertaJSON", JSON.stringify(dataPesertaList));
+
+            // Proses Fetch ke Google Sheets Backend Anda
+            fetch("https://script.google.com/macros/s/AKfycbw5eG8ztj5eiwl7ylX8-vVLrvbHPLDwNpP-MJVmFhGaKFxZHNAUGF1S9Ub-IX03Tfgf/exec", {
+                method: "POST",
+                body: formData,
+                redirect: "follow"
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (!result.success) {
+                    throw new Error(result.message || "Pendaftaran gagal.");
+                }
+
+                nomorDoorprize = Number(result.nomorDoorprize);
+
+                // 4. Preload gambar doorprize BERDASARKAN TOTAL KELUARGA
+                // Memunculkan gambar kupon SESUAI nomor urut dari Google Sheets
+                const containerKupon = document.getElementById('doorprize-image-container');
+                if (containerKupon) {
+                    containerKupon.innerHTML = ''; // Kosongkan wadah
+                    const jumlahKupon = parseInt(totalKeluarga.value) || 1;
+                    
+                    for (let i = 0; i < jumlahKupon; i++) {
+                        // nomorDoorprize adalah nomor pertama yang dikirim dari server
+                        // Kita tambahkan i (0, 1, 2, dst) untuk nomor kupon selanjutnya
+                        const nomorKuponAktual = nomorDoorprize + i;
+                        
+                        containerKupon.innerHTML += `<img src="assets/${nomorKuponAktual}.png" class="doorprize-image" style="width: 100%; max-width: 380px; border-radius: 10px; object-fit: contain;" alt="Kupon ${nomorKuponAktual}">`;
+                    }
+                }
+
+                // Tampilkan data di Modal Sukses
+                document.getElementById("registered-name").textContent = namaPerwakilan.value;
+                document.getElementById("registered-category").textContent = `Total Keluarga: ${totalKeluarga.value} Orang`;
+                document.getElementById("registered-competition").textContent = jumlahPeserta > 0 ? `${jumlahPeserta} Anak Terdaftar Lomba` : "Pendaftaran Kupon Doorprize Saja";
+
+                successModal.classList.add("active");
+                startConfetti();
+
+                // Reset form
+                regForm.reset();
+                wadahPeserta.innerHTML = '';
+            })
+            .catch(err => {
+                console.error(err);
+                alert(err);
+            })
+            .finally(() => {
+                submitBtn.classList.remove("loading");
+                submitBtn.disabled = false;
+            });
+        });
+    }
 
         // Close Modal Event Handler (Dioptimasi)
         if (closeModalBtn && successModal) {
@@ -969,14 +1249,22 @@ const renderLombaOptions = (category, preselected = []) => {
 
         if (downloadDoorprizeBtn) {
             downloadDoorprizeBtn.addEventListener('click', () => {
-                const link = document.createElement('a');
-
-                link.href = doorprizeImage.src;
-                link.download = `${nomorDoorprize}.png`;
-
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                const containerKupon = document.getElementById('doorprize-image-container');
+                if (!containerKupon) return;
+                
+                const images = containerKupon.querySelectorAll('img');
+                
+                images.forEach((img, index) => {
+                    // Diberi jeda waktu agar browser tidak memblokirnya sebagai spam/popup
+                    setTimeout(() => {
+                        const link = document.createElement('a');
+                        link.href = img.src;
+                        link.download = `Kupon-Doorprize-${index + 1}.png`;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }, index * 400); // jeda 400 milidetik per gambar
+                });
             });
         }
 
