@@ -1151,9 +1151,10 @@ const renderLombaOptions = (category, preselected = []) => {
                 ? dataPesertaList.map((p, idx) => `${idx + 1}. ${p.nama} (${p.kategori}: ${p.lomba})`).join(" | ")
                 : "Hanya Kupon Doorprize / Jalan Santai";
 
-            // 2. Teks Ringkas Tanpa Lomba (Untuk Sheet DOORPRIZE)
-            let ringkasanDoorprize = dataPesertaList.length > 0 
-                ? dataPesertaList.map(p => `${p.nama} (${p.kategori})`).join(" | ")
+            // 2. Teks Ringkas Tanpa Lomba & Tanpa Nama Anak (Untuk Sheet DOORPRIZE)
+            let kategoriUnik = [...new Set(dataPesertaList.map(p => p.kategori))];
+            let ringkasanDoorprize = kategoriUnik.length > 0 
+                ? kategoriUnik.join(" | ") 
                 : "Hanya Kupon Doorprize / Jalan Santai";
 
             formData.append("detailPeserta", ringkasanDetailPeserta);
