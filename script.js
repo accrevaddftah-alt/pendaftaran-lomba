@@ -1152,12 +1152,9 @@ const renderLombaOptions = (category, preselected = []) => {
                 : "Hanya Kupon Doorprize / Jalan Santai";
 
             // 2. Teks Ringkas Tanpa Lomba & Tanpa Nama Anak (Untuk Sheet DOORPRIZE)
-            // Mengambil kategori secara unik dan menghilangkan duplikat
-            let kategoriUnik = [...new Set(dataPesertaList.map(p => p.kategori))];
-            
-            // Format ringkas hanya Kategori (Contoh: PAUD dibawah TK | SD 1-3)
-            let ringkasanDoorprize = kategoriUnik.length > 0 
-                ? kategoriUnik.join(" | ")
+            // Jika ada anak yang ikut lomba, cetak "Mengikuti semua acara". Jika nol, cetak "Hanya Jalan Santai"
+            let ringkasanDoorprize = dataPesertaList.length > 0 
+                ? "Mengikuti semua acara"
                 : "Hanya Kupon Doorprize / Jalan Santai";
 
             formData.append("detailDoorprize", ringkasanDoorprize); 
