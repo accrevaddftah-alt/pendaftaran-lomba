@@ -1152,19 +1152,22 @@ const renderLombaOptions = (category, preselected = []) => {
                 : "Hanya Kupon Doorprize / Jalan Santai";
 
             // 2. Teks Ringkas Tanpa Lomba & Tanpa Nama Anak (Untuk Sheet DOORPRIZE)
+            // Mengambil kategori secara unik dan menghilangkan duplikat
             let kategoriUnik = [...new Set(dataPesertaList.map(p => p.kategori))];
+            
+            // Format ringkas hanya Kategori (Contoh: PAUD dibawah TK | SD 1-3)
             let ringkasanDoorprize = kategoriUnik.length > 0 
-                ? kategoriUnik.join(" | ") 
+                ? kategoriUnik.join(" | ")
                 : "Hanya Kupon Doorprize / Jalan Santai";
 
-            formData.append("detailPeserta", ringkasanDetailPeserta);
             formData.append("detailDoorprize", ringkasanDoorprize); 
+            formData.append("dataPesertaJSON", JSON.stringify(dataPesertaList)); 
             
             // 3. Kirim Data Mentah JSON (Agar Panitia bisa memisahkannya ke Sheet Kategori)
             formData.append("dataPesertaJSON", JSON.stringify(dataPesertaList));
 
             // Proses Fetch ke Google Sheets Backend Anda
-            fetch("https://script.google.com/macros/s/AKfycbw5eG8ztj5eiwl7ylX8-vVLrvbHPLDwNpP-MJVmFhGaKFxZHNAUGF1S9Ub-IX03Tfgf/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbwa2TvP4dMh-ubK1ZbwjiRhs1uf7HPGj5vBj5rtAr6Ui6GLdWmPqIBQZWYLSV27DEqOVQ/exec", {
                 method: "POST",
                 body: formData,
                 redirect: "follow"
