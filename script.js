@@ -431,7 +431,7 @@ const renderLombaOptions = (category, preselected = []) => {
             spinBtn.disabled = true;
             spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengacak...';
 
-            let duration = 10000;
+            let duration = 5000;
             let intervalTime = 80;
             let elapsed = 0;
 
