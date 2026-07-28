@@ -271,6 +271,9 @@ const renderLombaOptions = (category, preselected = []) => {
     // Tutup Modal Gacha Utama
     if (gachaCloseBtn && gachaModal) {
         gachaCloseBtn.addEventListener('click', () => {
+            // Hilangkan fokus dari tombol sebelum menutup modal
+            gachaCloseBtn.blur(); 
+            
             gachaModal.classList.remove('active');
             gachaModal.setAttribute('aria-hidden', 'true');
         });
@@ -298,8 +301,21 @@ const renderLombaOptions = (category, preselected = []) => {
     // Proses Spin Gacha
     if (spinBtn) {
         spinBtn.addEventListener('click', () => {
-            const min = parseInt(minInput ? minInput.value : 1) || 1;
-            const max = parseInt(maxInput ? maxInput.value : 10) || 10;
+            
+            // 1. Validasi Input Kosong
+            if (!minInput.value || !maxInput.value) {
+                showCustomAlert("Perhatian!", "Harap isi Nomor Awal dan Nomor Akhir terlebih dahulu sebelum mengacak.");
+                return; // Hentikan proses jalannya fungsi
+            }
+
+            const min = parseInt(minInput.value);
+            const max = parseInt(maxInput.value);
+
+            // 2. Validasi Logika Angka (Mencegah error jika min lebih besar dari max)
+            if (min > max) {
+                showCustomAlert("Input Tidak Valid", "Nomor Awal tidak boleh lebih besar dari Nomor Akhir.");
+                return;
+            }
 
             const validPool = availableNumbers.filter(n => n >= min && n <= max);
 
@@ -1091,7 +1107,7 @@ const renderLombaOptions = (category, preselected = []) => {
 
 /* ---------------------------------------------------------
    11. GLOBAL CARD HELPER (Lomba Selection Link to Form)
-   --------------------------------------------------------- */
+   --------------------------------------------------------- 
 function selectCompetition(category, competitionName) {
     const categorySelect = document.getElementById('category');
 
@@ -1109,7 +1125,7 @@ function selectCompetition(category, competitionName) {
             lombaFormGroup.classList.remove('error');
         }
     }
-}
+} */
 
 // Fungsi Helper untuk Menampilkan Custom Alert
 function showCustomAlert(title, message) {

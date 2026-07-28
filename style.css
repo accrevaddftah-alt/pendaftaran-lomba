@@ -1765,48 +1765,6 @@ button, input, select, textarea {
         margin-right: 8px;
     }
     
-    .hamburger-menu {
-        display: flex;
-    }
-    
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background-color: var(--card-bg);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 36px;
-        padding: 40px 0;
-        transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-        border-top: 1px solid var(--border-color);
-        z-index: 998;
-    }
-    
-    .navbar-container.scrolled .nav-menu {
-        top: 60px;
-        height: calc(100vh - 60px);
-    }
-    
-    .nav-menu.active {
-        left: 0;
-    }
-
-    /* Hamburger Active Animate */
-    .hamburger-menu.active span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-    
-    .hamburger-menu.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .hamburger-menu.active span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
 
     .hero-container {
         grid-template-columns: 1fr;
@@ -2311,83 +2269,6 @@ body.light-mode .gacha-trigger-fab,
     }
 }
 
-/* ==========================================
-   NAVBAR MOBILE: DROPDOWN CARD (TIDAK FULLSCREEN)
-   ========================================== */
-    @media (max-width: 768px) {
-    /* Tampilkan Tombol Hamburger di Mobile */
-    .hamburger-menu {
-        display: flex;
-        z-index: 1001;
-    }
-
-    /* Ubah Menu Mobile Menjadi Dropdown Card */
-    .nav-menu {
-        position: absolute;
-        top: calc(100% + 10px);              /* Tepat di bawah navbar */
-        right: 16px;                         /* Mengambang di kanan */
-        width: 240px;                        /* Lebar ringkas (tidak fullscreen) */
-        background-color: var(--card-bg);
-        border: 1px solid var(--border-color);
-        border-radius: var(--border-radius-md, 12px);
-        padding: 16px;
-        box-shadow: var(--shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.3));
-        
-        /* Layout Item Menu */
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-
-        /* Effek Transisi Meluncur & Memudar */
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-12px) scale(0.95);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        pointer-events: none;
-    }
-
-    /* Status Saat Hamburger Di-klik (Aktif) */
-    .nav-menu.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0) scale(1);
-        pointer-events: auto;
-    }
-
-    /* Style Link di Dalam Menu Mobile */
-    .nav-link {
-        padding: 10px 14px;
-        border-radius: var(--border-radius-sm, 6px);
-        font-size: 14.5px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .nav-link:hover {
-        background-color: rgba(230, 57, 70, 0.08);
-    }
-
-    .nav-link::after {
-        display: none; /* Sembunyikan garis bawah di mobile agar lebih rapi */
-    }
-
-    /* Animasi Tombol Hamburger Menjadi X saat Aktif */
-    .hamburger-menu.active span:nth-child(1) {
-        transform: translateY(7.5px) rotate(45deg);
-    }
-
-    .hamburger-menu.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger-menu.active span:nth-child(3) {
-        transform: translateY(-7.5px) rotate(-45deg);
-    }
-    }
-
 /* === STYLING MODAL POPUP PIN === */
 
 /* 1. Overlay Latar Belakang */
@@ -2715,4 +2596,95 @@ body.light-mode .gacha-trigger-fab,
 
 .custom-modal-btn:active {
     transform: scale(0.98);
+}
+
+/* ==========================================
+   BOTTOM NAVIGATION UNTUK MOBILE (PERBAIKAN)
+   ========================================== */
+@media (max-width: 768px) {
+    /* 1. Hapus efek blur di header atas agar menu bisa turun lepas ke dasar layar */
+    .navbar-container {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background-color: var(--bg-color) !important; /* Warna solid agar rapi */
+    }
+
+    /* 2. Sembunyikan tombol Hamburger */
+    .hamburger-menu {
+        display: none !important;
+    }
+
+    /* 3. Beri jarak di bagian bawah halaman agar konten tidak tertutup navbar */
+    body {
+        padding-bottom: 80px !important; 
+    }
+
+    /* 4. Pindahkan Nav Menu ke bawah layar */
+    .nav-menu {
+        position: fixed !important;
+        bottom: 0 !important;
+        top: auto !important; 
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 70px !important;
+        
+        /* Tata letak menyamping */
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+        
+        /* Desain tampilan navbar bawah (Efek blur dipindah ke sini) */
+        background-color: rgba(15, 23, 42, 0.85) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border-top: 1px solid var(--border-color) !important;
+        border-bottom: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5) !important;
+        
+        /* Pastikan selalu terlihat */
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        z-index: 9999 !important;
+    }
+
+    /* 5. Ubah tampilan setiap tombol menu (Icon di atas, teks di bawah) */
+    .nav-link, #gacha-trigger-fab {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        padding: 10px 0 !important;
+        width: 20% !important; /* 5 menu dibagi rata (100% / 5) */
+        font-size: 11px !important; 
+        font-weight: 500 !important;
+        color: var(--text-muted) !important;
+        background: transparent !important;
+    }
+
+    /* 6. Perbesar ukuran icon */
+    .nav-link i, #gacha-trigger-fab i {
+        font-size: 20px !important;
+        margin: 0 !important;
+    }
+
+    /* 7. Hilangkan garis bawah animasi bawaan */
+    .nav-link::after {
+        display: none !important;
+    }
+
+    /* 8. Warna saat menu aktif atau disentuh */
+    .nav-link.active, 
+    .nav-link:hover,
+    #gacha-trigger-fab:hover,
+    #gacha-trigger-fab:active {
+        color: var(--primary-color) !important;
+        background-color: transparent !important;
+    }
 }
