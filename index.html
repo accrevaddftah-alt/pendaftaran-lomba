@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pendaftaran Online Lomba Kemerdekaan 17 Agustus 2026. Mari rayakan HUT RI ke-81 dengan mengikuti berbagai perlombaan seru dan raih hadiah jutaan rupiah!">
     <title>Pendaftaran Lomba 17 Agustus 2026</title>
+    <!-- Menghilangkan error favicon -->
+    <link rel="icon" href="data:,">
     <!--Font Awesome-->
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <!-- Google Fonts: Poppins -->
@@ -53,13 +55,17 @@
                 <i class="fa-solid fa-trophy"></i>
                 <span>Lomba</span>
             </a>
+            <!--<a href="#jadwal" class="nav-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Jadwal</span>
+            <a href="#daftar" class="nav-link">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Daftar</span>
+            </a>-->
             <a href="#galeri" class="nav-link">
                 <i class="fa-solid fa-images"></i>
                 <span>Galeri</span>
             </a>
-            <a href="#jadwal" class="nav-link">
-                <i class="fa-solid fa-calendar-days"></i>
-                <span>Jadwal</span>
             </a>
             <a href="#contact" class="nav-link">
                 <i class="fa-brands fa-whatsapp"></i>
@@ -69,8 +75,11 @@
                 <i class="fa-solid fa-ticket"></i>
                 <span>Undi</span>
             </a>
-                <!--<a href="#faq" class="nav-link">FAQ</a>-->
-            </nav>
+            <!--<a href="#faq" class="nav-link">
+                <i class="fa-regular fa-circle-question"></i>
+                <span>FAQ</span>
+            </a>-->
+        </nav>
 
             <div class="navbar-actions">
                 <!-- Hamburger Menu for Mobile -->
@@ -95,8 +104,8 @@
                     <p class="hero-subtitle">Mari rayakan Hari Kemerdekaan Indonesia dengan mengikuti berbagai perlombaan seru dan raih kesempatan memenangkan hadiah menarik!</p>
                     
                     <div class="hero-actions">
-                        <a href="#daftar" class="btn btn-primary">Daftar Sekarang</a>
-                        <a href="#jadwal" class="btn btn-secondary">Lihat Jadwal</a>
+                        <a href="#daftar" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i> &nbsp; <span>Daftar Sekarang</span></a>
+                        <a href="#jadwal" class="btn btn-secondary"><i class="fa-solid fa-calendar-days"> &nbsp; </i>Lihat Jadwal</a>
                     </div>
                 </div>
 
@@ -368,38 +377,6 @@
             </div>
         </section>
 
-        <!-- GALERI SECTION -->
-        <section id="galeri" class="galeri-section section-padding">
-            <div class="wrapper">
-                <div class="section-header fade-up-init">
-                    <span class="section-tag">Galeri</span>
-                    <h2 class="section-title">Kilas Balik Kemeriahan</h2>
-                    <p class="section-subtitle">Mengintip kembali keseruan, semangat, dan kebersamaan warga RT 41 pada perayaan kemerdekaan tahun lalu.</p>
-                </div>
-                
-                <div class="gallery-grid fade-up-init">
-                    <!-- Pastikan path foldernya sesuai dengan folder Anda -->
-                    <img src="17 Agustus/foto2.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto6.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto17.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto9.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto27.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto25.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto9.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto7.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto8.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto24.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto20.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto21.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto15.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto14.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto10.JPG" alt="Kenangan" class="gallery-img">
-                    <img src="17 Agustus/foto26.JPG" alt="Kenangan" class="gallery-img">
-                    <!-- Silakan tambahkan tag <img> lainnya sesuai dengan nama foto Anda -->
-                </div>
-            </div>
-        </section>
-
         <!-- JADWAL LOMBA SECTION -->
         <section id="jadwal" class="jadwal-section section-padding alt-bg">
             <div class="wrapper">
@@ -616,6 +593,33 @@
                             <span>Jika saat menekan tombol Daftar terasa loading beberapa detik, mohon tunggu sebentar ya dan jangan ditutup halamannya, sistem sedang mencatat data kamu.</span>
                         </div>
                     </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERI SECTION -->
+        <section id="galeri" class="galeri-section section-padding">
+            <div class="wrapper">
+                <div class="section-header fade-up-init">
+                    <span class="section-tag">Galeri</span>
+                    <h2 class="section-title">Kilas Balik Kemeriahan</h2>
+                    <p class="section-subtitle">Mengintip kembali keseruan, semangat, dan kebersamaan warga RT 41 pada perayaan kemerdekaan tahun lalu.</p>
+                </div>
+                
+                <div class="gallery-grid fade-up-init">
+                    <!-- Contoh Foto -->
+                    <img src="17 Agustus/foto2.JPG" alt="Kenangan" class="gallery-img">
+                    
+                    <!-- Contoh Video (Sisipkan di antara foto) -->
+                    <!-- Pastikan memakai class="gallery-img" juga agar ukurannya rapi -->
+                    <video src="17 Agustus/video1.mp4" class="gallery-img" autoplay muted loop playsinline></video>
+                    
+                    <!-- Contoh Foto Lainnya -->
+                    <img src="17 Agustus/foto6.JPG" alt="Kenangan" class="gallery-img">
+                    <img src="17 Agustus/foto17.JPG" alt="Kenangan" class="gallery-img">
+                    
+                    <!-- Contoh Video Lagi -->
+                    <video src="17 Agustus/video4.mp4" class="gallery-img" autoplay muted loop playsinline></video>
                 </div>
             </div>
         </section>
@@ -874,20 +878,26 @@
         </div>
     </div>
 
-    <!-- LIGHTBOX MODAL (Popup Galeri) -->
+    <!-- LIGHTBOX MODAL (Popup Galeri Gambar & Video) -->
     <div id="lightbox-modal" class="lightbox-overlay">
         <div class="lightbox-content-wrapper">
-            <!-- Wadah Gambar -->
+            <!-- Wadah Media -->
             <div class="lightbox-image-container">
+                <!-- Untuk menampilkan gambar -->
                 <img id="lightbox-img" src="" alt="Gambar Galeri">
+                <!-- Untuk menampilkan video saat di-klik -->
+                <!--<video id="lightbox-video" src="" controls playsinline style="display: none;"></video>-->
+                <!-- Untuk menampilkan video saat di-klik (ditambah penangkal download) -->
+                <video id="lightbox-video" src="" controls controlsList="nodownload" oncontextmenu="return false;" playsinline style="display: none;"></video>
             </div>
             
-            <!-- Tombol Kontrol di Bawah Gambar (Sesuai Request) -->
+            <!-- Tombol Kontrol di Bawah Media -->
             <div class="lightbox-action-buttons">
                 <a id="download-btn" href="#" download class="lightbox-btn">Download Foto</a>
                 <button id="close-lightbox-btn" class="lightbox-btn">Tutup</button>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- CONFETTI CANVAS -->

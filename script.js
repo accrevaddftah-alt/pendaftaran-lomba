@@ -1436,48 +1436,78 @@ function showCustomAlert(title, message) {
 }
 
 /* =========================================================
-   LOGIKA FITUR GALERI (LIGHTBOX + DOWNLOAD)
+   LOGIKA FITUR GALERI (GAMBAR & VIDEO + DOWNLOAD)
    ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
-    const galleryImages = document.querySelectorAll('.gallery-img');
+    // Menangkap semua elemen dengan class gallery-img (baik tag <img> maupun <video>)
+    const galleryMedia = document.querySelectorAll('.gallery-img'); 
+    
     const lightboxModal = document.getElementById('lightbox-modal');
     const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxVideo = document.getElementById('lightbox-video');
     const closeBtn = document.getElementById('close-lightbox-btn');
     const downloadBtn = document.getElementById('download-btn');
     
     // Pelindung
-    if (!lightboxModal || !lightboxImg) return;
+    if (!lightboxModal || (!lightboxImg && !lightboxVideo)) return;
 
-    // Buka popup jika gambar diklik
-    galleryImages.forEach(img => {
-        img.addEventListener('click', () => {
-            lightboxImg.src = img.src;
-            
-            downloadBtn.href = img.src;
-            const filename = img.src.substring(img.src.lastIndexOf('/') + 1);
-            downloadBtn.download = filename || "Kenangan-17-Agustus.jpg";
+    // Buka popup jika media (gambar/video) diklik
+    galleryMedia.forEach(media => {
+        media.addEventListener('click', () => {
+            // Mengecek apakah yang di-klik adalah Video atau Gambar
+            const isVideo = media.tagName.toLowerCase() === 'video';
 
+            if (isVideo) {
+                // JIKA VIDEO:
+                lightboxImg.style.display = 'none';          // Sembunyikan gambar
+                lightboxVideo.style.display = 'block';       // Munculkan video
+                lightboxVideo.src = media.src;               // Ambil sumber video
+                lightboxVideo.play();                        // Putar video (suara otomatis menyala karena ada 'controls' di HTML)
+                
+                downloadBtn.style.display = 'none';          // Sembunyikan tombol Download
+            } else {
+                // JIKA GAMBAR:
+                lightboxVideo.style.display = 'none';        // Sembunyikan video
+                lightboxVideo.pause();                       // Hentikan pemutaran
+                lightboxVideo.src = "";                      // Kosongkan sumber video
+                
+                lightboxImg.style.display = 'block';         // Munculkan gambar
+                lightboxImg.src = media.src;                 // Ambil sumber gambar
+                
+                downloadBtn.style.display = 'flex';          // Munculkan tombol Download
+                downloadBtn.href = media.src;
+                const filename = media.src.substring(media.src.lastIndexOf('/') + 1);
+                downloadBtn.download = filename || "Kenangan-17-Agustus.jpg";
+            }
+
+            // Tampilkan Popup Lightbox
             lightboxModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
     });
 
-    // Fungsi Tutup
+    // Fungsi Tutup Popup
     const closeLightbox = () => {
         lightboxModal.classList.remove('active');
         document.body.style.overflow = 'auto';
+
+        // Pastikan video berhenti berputar dan suaranya mati saat popup ditutup
+        if (lightboxVideo) {
+            lightboxVideo.pause();
+            lightboxVideo.src = ""; 
+        }
     };
 
     if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
 
-    // Tutup jika klik area kosong di luar gambar/tombol
+    // Tutup jika area gelap di luar gambar diklik
     lightboxModal.addEventListener('click', (e) => {
         if (e.target === lightboxModal || e.target.classList.contains('lightbox-content-wrapper') || e.target.classList.contains('lightbox-image-container')) {
             closeLightbox();
         }
     });
 
-    // Tutup menggunakan tombol ESC
+    // Tutup menggunakan tombol ESC di keyboard
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
             closeLightbox();
