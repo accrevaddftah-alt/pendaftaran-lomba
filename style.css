@@ -2804,3 +2804,30 @@ body.light-mode .gacha-trigger-fab,
 .lightbox-btn:hover {
     opacity: 0.8;
 }
+
+/* =========================================================
+   TOMBOL GOOGLE DRIVE DI BAWAH GALERI
+   ========================================================= */
+.gallery-drive-link {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px dashed var(--border-color); /* Garis putus-putus pembatas */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.gallery-drive-link p {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Modifikasi sedikit untuk tombol Drive agar Icon-nya pas */
+.btn-drive i {
+    font-size: 1.2em;
+    margin-right: 4px;
+}
