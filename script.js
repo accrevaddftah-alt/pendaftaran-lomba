@@ -327,24 +327,39 @@ const renderLombaOptions = (category, preselected = []) => {
         });
     }
 
-    // Ambil nomor yang BELUM DIUNDI dari Google Sheets (DIUBAH KE METODE POST)
+    // Ambil nomor yang BELUM DIUNDI dari Google Sheets
     async function loadAvailableNumbers() {
         if (!spinBtn) return;
         spinBtn.disabled = true;
         spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memuat Data...';
 
         try {
-            const formData = new FormData();
-            formData.append("action", "getAvailableNumbers");
-
+            // 1. Kirim data ke Google Sheets
             const response = await fetch(SCRIPT_URL, {
                 method: 'POST',
                 body: formData,
                 redirect: 'follow'
             });
-            
-            const data = await response.json();
 
+            // 2. Baca balasan Google sebagai teks mentah terlebih dahulu (PELINDUNG ERROR HTML)
+            const textResponse = await response.text(); 
+            let data;
+
+            try {
+                // 3. Coba ubah teks tersebut menjadi format JSON
+                data = JSON.parse(textResponse);
+            } catch (parseError) {
+                // 4. Jika gagal (Google membalas HTML), tangkap error-nya di sini
+                console.error("Google mengembalikan HTML, bukan JSON:", textResponse);
+                throw new Error("Sistem Google sedang memproses atau sesi kedaluwarsa.");
+            }
+
+            // 5. Jika aman dan berhasil jadi JSON, lanjutkan logika sukses Anda
+            if (data.result === 'success' || data.success) {
+                // ... (Masukkan kode ketika pendaftaran berhasil di sini) ...
+            }
+
+            // Jika sukses menjadi JSON, jalankan logikanya
             if (data.success) {
                 availableNumbers = data.numbers; // Mengambil array angka dari server
                 console.log("Nomor yang tersedia untuk diundi:", availableNumbers);
@@ -352,12 +367,19 @@ const renderLombaOptions = (category, preselected = []) => {
                 console.error("Gagal memuat nomor:", data.message);
             }
         
-            } catch (err) {
-                console.error("Gagal terhubung ke Google Sheets:", err);
+        } catch (err) {
+            console.error("Gagal terhubung ke Google Sheets:", err);
+            
+            // Tampilkan pesan error yang ramah ke panitia
+            showCustomAlert(
+                "Koneksi Sibuk", 
+                "Mohon maaf, sistem Google sedang sibuk atau sesi Anda kedaluwarsa. Silakan refresh (muat ulang) halaman ini ya!"
+            );
         
-            } finally {
-                spinBtn.disabled = false;
-                spinBtn.innerHTML = '<i class="fas fa-arrows-rotate"></i> Acak Sekarang!';
+        } finally {
+            // Kembalikan tombol seperti semula
+            spinBtn.disabled = false;
+            spinBtn.innerHTML = '<i class="fas fa-arrows-rotate"></i> Acak Sekarang!';
         }
     }
 
