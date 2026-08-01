@@ -1158,6 +1158,7 @@ const renderLombaOptions = (category, preselected = []) => {
 
             // Gabungkan alamat rumah
             const alamatLengkap = gang.value + " " + houseNumber.value.trim();
+            const notes = document.getElementById('notes');
 
             // Rancang data yang akan dikirim ke Google Apps Script
             const formData = new FormData();
@@ -1184,36 +1185,40 @@ const renderLombaOptions = (category, preselected = []) => {
             formData.append("dataPesertaJSON", JSON.stringify(dataPesertaList));
 
             // Proses Fetch ke Google Sheets Backend Anda
+            // KODE BARU YANG AMAN
             fetch("https://script.google.com/macros/s/AKfycbwa2TvP4dMh-ubK1ZbwjiRhs1uf7HPGj5vBj5rtAr6Ui6GLdWmPqIBQZWYLSV27DEqOVQ/exec", {
                 method: "POST",
                 body: formData,
                 redirect: "follow"
             })
-            .then(response => response.json())
-            .then(result => {
+            .then(response => response.text()) // Baca sebagai teks dulu
+            .then(textResponse => {
+                let result;
+                try {
+                    result = JSON.parse(textResponse); // Coba jadikan JSON
+                } catch (error) {
+                    console.error("Google membalas HTML:", textResponse);
+                    throw new Error("Sistem sedang memproses. Silakan cek kembali atau refresh halaman.");
+                }
+
                 if (!result.success) {
                     throw new Error(result.message || "Pendaftaran gagal.");
                 }
 
+                // Lanjutkan proses sukses
                 nomorDoorprize = Number(result.nomorDoorprize);
 
-                // 4. Preload gambar doorprize BERDASARKAN TOTAL KELUARGA
-                // Memunculkan gambar kupon SESUAI nomor urut dari Google Sheets
                 const containerKupon = document.getElementById('doorprize-image-container');
                 if (containerKupon) {
-                    containerKupon.innerHTML = ''; // Kosongkan wadah
+                    containerKupon.innerHTML = ''; 
                     const jumlahKupon = parseInt(totalKeluarga.value) || 1;
-                    
+
                     for (let i = 0; i < jumlahKupon; i++) {
-                        // nomorDoorprize adalah nomor pertama yang dikirim dari server
-                        // Kita tambahkan i (0, 1, 2, dst) untuk nomor kupon selanjutnya
                         const nomorKuponAktual = nomorDoorprize + i;
-                        
                         containerKupon.innerHTML += `<img src="assets/${nomorKuponAktual}.png" class="doorprize-image" style="width: 100%; max-width: 380px; border-radius: 10px; object-fit: contain;" alt="Kupon ${nomorKuponAktual}">`;
                     }
                 }
 
-                // Tampilkan data di Modal Sukses
                 document.getElementById("registered-name").textContent = namaPerwakilan.value;
                 document.getElementById("registered-category").textContent = `Total Keluarga: ${totalKeluarga.value} Orang`;
                 document.getElementById("registered-competition").textContent = jumlahPeserta > 0 ? `${jumlahPeserta} Anak Terdaftar Lomba` : "Pendaftaran Kupon Doorprize Saja";
@@ -1221,13 +1226,12 @@ const renderLombaOptions = (category, preselected = []) => {
                 successModal.classList.add("active");
                 startConfetti();
 
-                // Reset form
                 regForm.reset();
                 wadahPeserta.innerHTML = '';
             })
             .catch(err => {
                 console.error(err);
-                alert(err);
+                showCustomAlert("Informasi", err.message); // Gunakan custom alert yang lebih rapi
             })
             .finally(() => {
                 submitBtn.classList.remove("loading");
