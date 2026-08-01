@@ -334,10 +334,14 @@ const renderLombaOptions = (category, preselected = []) => {
         spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memuat Data...';
 
         try {
+            // KUNCI PERBAIKAN: Definisikan formData di sini sebelum dikirim!
+            const formData = new FormData();
+            formData.append("action", "getAvailableNumbers");
+
             // 1. Kirim data ke Google Sheets
             const response = await fetch(SCRIPT_URL, {
                 method: 'POST',
-                body: formData,
+                body: formData, // Sekarang formData-nya sudah ada isinya
                 redirect: 'follow'
             });
 
@@ -352,11 +356,6 @@ const renderLombaOptions = (category, preselected = []) => {
                 // 4. Jika gagal (Google membalas HTML), tangkap error-nya di sini
                 console.error("Google mengembalikan HTML, bukan JSON:", textResponse);
                 throw new Error("Sistem Google sedang memproses atau sesi kedaluwarsa.");
-            }
-
-            // 5. Jika aman dan berhasil jadi JSON, lanjutkan logika sukses Anda
-            if (data.result === 'success' || data.success) {
-                // ... (Masukkan kode ketika pendaftaran berhasil di sini) ...
             }
 
             // Jika sukses menjadi JSON, jalankan logikanya
@@ -382,7 +381,6 @@ const renderLombaOptions = (category, preselected = []) => {
             spinBtn.innerHTML = '<i class="fas fa-arrows-rotate"></i> Acak Sekarang!';
         }
     }
-
     // =========================================================
     // Trigger Buka Modal Utama
     // =========================================================
